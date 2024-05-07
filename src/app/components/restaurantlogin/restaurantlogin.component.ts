@@ -42,6 +42,10 @@ export class RestaurantloginComponent implements OnInit {
         (response) => {
           localStorage.setItem('token', response.data.token);
           localStorage.setItem('expiration', response.data.expiration);
+          localStorage.setItem(
+            'restaurantId',
+            response.data.restaurantId.toString()
+          );
           this.toastrService.info(response.message);
           this.router.navigate(['/']);
         },

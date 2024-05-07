@@ -2,25 +2,26 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { LucideAngularModule } from 'lucide-angular';
 import { AuthService } from '../../services/auth.service';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
   standalone: true,
-  imports: [CommonModule, LucideAngularModule],
+  imports: [CommonModule, LucideAngularModule, RouterLink],
   templateUrl: './navbar.component.html',
 })
 export class NavbarComponent {
   loginDropdown: boolean = false;
-  isLogin!: boolean;
   constructor(private authService: AuthService, private router: Router) {}
 
-  ngOnInit(): void {
-    this.isLogin = this.authService.isAuthenticated();
-  }
+  ngOnInit(): void {}
 
   setLoginDropdown(): void {
     this.loginDropdown = !this.loginDropdown;
+  }
+
+  isAuthenticated() {
+    return this.authService.isAuthenticated();
   }
 
   logOut() {

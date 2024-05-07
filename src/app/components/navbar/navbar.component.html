@@ -1,9 +1,18 @@
 <header
-  class="sticky top-0 z-30 bg-slate-100 flex justify-between items-center shadow-lg rounded-b-md p-2 mb-7"
+  class="sticky top-0 z-30 bg-slate-100 flex justify-between items-center shadow-lg rounded-b-md p-2"
 >
   <div>
-    <a href="/" class="text-3xl font-extrabold text-orange-600"> NeYesek </a>
+    <a routerLink="/" class="text-3xl font-extrabold text-orange-600">
+      NeYesek
+    </a>
   </div>
+
+  <div
+    (click)="setLoginDropdown()"
+    *ngIf="loginDropdown"
+    class="fixed inset-0 z-10 bg-black bg-opacity-30"
+  ></div>
+
   <nav class="flex gap-x-3 text-orange-600">
     <div
       (click)="setLoginDropdown()"
@@ -14,19 +23,21 @@
 
     <div
       *ngIf="loginDropdown === true"
-      class="z-10 absolute w-fit top-12 border border-orange-600 bg-white rounded-md p-2 text-black font-bold text-sm"
+      class="z-10 absolute w-fit top-12 right-0 border border-orange-600 bg-white rounded-md p-2 text-black font-bold text-sm"
     >
       <a
-        *ngIf="!isLogin"
-        href="/user/login"
+        (click)="setLoginDropdown()"
+        *ngIf="!isAuthenticated()"
+        routerLink="user/login"
         class="flex justify-center gap-x-1 items-center p-1 hover:bg-orange-200 rounded-md"
       >
         <lucide-icon name="user" class="my-icon group-hover:fill-orange-600" />
         Müşteri Giriş
       </a>
       <a
-        *ngIf="!isLogin"
-        href="/restaurant/login"
+        (click)="setLoginDropdown()"
+        *ngIf="!isAuthenticated()"
+        routerLink="restaurant/login"
         class="flex justify-center gap-x-1 items-center p-1 hover:bg-orange-200 rounded-md"
       >
         <lucide-icon name="soup" class="my-icon group-hover:fill-orange-600" />
@@ -34,8 +45,9 @@
       </a>
       <div
         (click)="logOut()"
-        *ngIf="isLogin"
-        class="flex justify-center gap-x-1 items-center p-1 hover:bg-orange-200 rounded-md"
+        (click)="setLoginDropdown()"
+        *ngIf="isAuthenticated()"
+        class="flex justify-center gap-x-1 items-center p-1 hover:bg-orange-200 rounded-md cursor-pointer"
       >
         <lucide-icon name="log_out" />
         <span>Çıkış Yap</span>
@@ -43,12 +55,17 @@
     </div>
 
     <a
-      href="/favorites"
+      (click)="setLoginDropdown()"
+      *ngIf="isAuthenticated()"
+      routerLink="/favorites"
       class="rounded-full p-1 hover:bg-orange-100 cursor-pointer group"
     >
       <lucide-icon name="heart" class="my-icon group-hover:fill-orange-600" />
     </a>
-    <div class="rounded-full p-1 hover:bg-orange-100 cursor-pointer group">
+    <div
+      *ngIf="isAuthenticated()"
+      class="rounded-full p-1 hover:bg-orange-100 cursor-pointer group"
+    >
       <lucide-icon
         name="shopping-cart"
         class="my-icon group-hover:fill-orange-600"

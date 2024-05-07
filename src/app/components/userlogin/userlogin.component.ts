@@ -9,6 +9,8 @@ import { AuthService } from '../../services/auth.service';
 import { ToastrService } from 'ngx-toastr';
 import { CommonModule } from '@angular/common';
 import { Route, Router } from '@angular/router';
+import { jwtDecode } from 'jwt-decode';
+import { Token } from '@angular/compiler';
 
 @Component({
   selector: 'app-userlogin',
@@ -35,6 +37,7 @@ export class UserloginComponent implements OnInit {
       password: ['', Validators.required],
     });
   }
+
   login() {
     if (this.loginForm.valid) {
       let loginModel = Object.assign({}, this.loginForm.value);
@@ -42,6 +45,7 @@ export class UserloginComponent implements OnInit {
         (response) => {
           localStorage.setItem('token', response.data.token);
           localStorage.setItem('expiration', response.data.expiration);
+          localStorage.setItem('userId', response.data.userId.toString());
           this.toastrService.info(response.message);
           this.router.navigate(['/']);
         },

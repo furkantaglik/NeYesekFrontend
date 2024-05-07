@@ -42,6 +42,8 @@ export class AuthService {
   logOut() {
     localStorage.removeItem('token');
     localStorage.removeItem('expiration');
+    localStorage.removeItem('userId');
+    localStorage.removeItem('restaurantId');
   }
 
   isAuthenticated() {
