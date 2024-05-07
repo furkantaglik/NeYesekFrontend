@@ -1,0 +1,19 @@
+<section class="grid grid-cols-12 gap-x-5 w-full relative">
+  <div
+    class="md:col-span-3 md:block md:relative md:top-0"
+    [ngClass]="
+      filterBar ? 'block z-10 top-20 absolute col-span-12 w-full' : 'hidden'
+    "
+  >
+    <app-filterbar></app-filterbar>
+  </div>
+  <section
+    class="relative h-screen rounded-md shadow-xl col-span-12 md:col-span-9"
+  >
+    <app-searchbar></app-searchbar>
+    <button (click)="setFilterBar()" class="absolute right-10 top-5 md:hidden">
+      <lucide-icon name="sliders-horizontal" class="my-cion"></lucide-icon>
+    </button>
+    asdasdas
+  </section>
+</section>

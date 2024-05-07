@@ -1,0 +1,58 @@
+<header
+  class="sticky top-0 z-30 bg-slate-100 flex justify-between items-center shadow-lg rounded-b-md p-2 mb-7"
+>
+  <div>
+    <a href="/" class="text-3xl font-extrabold text-orange-600"> NeYesek </a>
+  </div>
+  <nav class="flex gap-x-3 text-orange-600">
+    <div
+      (click)="setLoginDropdown()"
+      class="rounded-full p-1 hover:bg-orange-100 cursor-pointer group"
+    >
+      <lucide-icon name="user" class="my-icon group-hover:fill-orange-600" />
+    </div>
+
+    <div
+      *ngIf="loginDropdown === true"
+      class="z-10 absolute w-fit top-12 border border-orange-600 bg-white rounded-md p-2 text-black font-bold text-sm"
+    >
+      <a
+        *ngIf="!isLogin"
+        href="/user/login"
+        class="flex justify-center gap-x-1 items-center p-1 hover:bg-orange-200 rounded-md"
+      >
+        <lucide-icon name="user" class="my-icon group-hover:fill-orange-600" />
+        Müşteri Giriş
+      </a>
+      <a
+        *ngIf="!isLogin"
+        href="/restaurant/login"
+        class="flex justify-center gap-x-1 items-center p-1 hover:bg-orange-200 rounded-md"
+      >
+        <lucide-icon name="soup" class="my-icon group-hover:fill-orange-600" />
+        <span>Restoran Giriş</span>
+      </a>
+      <div
+        (click)="logOut()"
+        *ngIf="isLogin"
+        class="flex justify-center gap-x-1 items-center p-1 hover:bg-orange-200 rounded-md"
+      >
+        <lucide-icon name="log_out" />
+        <span>Çıkış Yap</span>
+      </div>
+    </div>
+
+    <a
+      href="/favorites"
+      class="rounded-full p-1 hover:bg-orange-100 cursor-pointer group"
+    >
+      <lucide-icon name="heart" class="my-icon group-hover:fill-orange-600" />
+    </a>
+    <div class="rounded-full p-1 hover:bg-orange-100 cursor-pointer group">
+      <lucide-icon
+        name="shopping-cart"
+        class="my-icon group-hover:fill-orange-600"
+      />
+    </div>
+  </nav>
+</header>

@@ -1,0 +1,103 @@
+<form
+  [formGroup]="registerForm"
+  class="flex flex-col mx-auto justify-center rounded-md w-[400px] border p-5"
+>
+  <header class="mb-5 border-b">
+    <div class="flex justify-between items-center mb-5">
+      <h1 class="text-3xl font-extrabold text-orange-600">
+        NeYesek <br />
+        <span class="text-gray-600 text-lg">Müşteri Hesabı</span>
+      </h1>
+      <h2 class="text-xl font-semibold">Kayıt Ol</h2>
+    </div>
+    <span class="text-gray-500 text-sm">
+      Kaydolabilmek için gerekli alanları doldurun
+    </span>
+  </header>
+  <main class="flex flex-col gap-y-5">
+    <div class="flex flex-col">
+      <label for="firstName" class="font-bold ms-1"> İsim </label>
+      <input
+        type="text"
+        id="firstName"
+        placeholder="isminiz"
+        formControlName="firstName"
+        required
+        class="p-2 rounded-md border border-orange-500 focus:outline-orange-500"
+      />
+    </div>
+    <div class="flex flex-col">
+      <label for="lastName" class="font-bold ms-1"> Soyisim </label>
+      <input
+        type="text"
+        id="lastName"
+        placeholder="soyisminiz"
+        formControlName="lastName"
+        required
+        class="p-2 rounded-md border border-orange-500 focus:outline-orange-500"
+      />
+    </div>
+    <div class="flex flex-col">
+      <label for="email" class="font-bold ms-1"> E-posta </label>
+      <input
+        type="email"
+        id="email"
+        placeholder="example@gmail.com"
+        formControlName="email"
+        required
+        class="p-2 rounded-md border border-orange-500 focus:outline-orange-500"
+      />
+    </div>
+    <div class="flex flex-col">
+      <label for="telNo" class="font-bold ms-1"> Tel No </label>
+      <input
+        type="number"
+        id="telNo"
+        placeholder="0555 555 5555"
+        formControlName="telNo"
+        required
+        class="p-2 rounded-md border border-orange-500 focus:outline-orange-500"
+      />
+    </div>
+    <div class="flex flex-col">
+      <label for="adress" class="font-bold ms-1"> Adres </label>
+      <input
+        type="text"
+        id="adress"
+        placeholder="istanbul/küçükçekmece"
+        formControlName="adress"
+        required
+        class="p-2 rounded-md border border-orange-500 focus:outline-orange-500"
+      />
+    </div>
+    <div class="flex flex-col">
+      <label for="password" class="font-bold ms-1"> Şifre </label>
+      <input
+        type="password"
+        id="password"
+        placeholder="********"
+        formControlName="password"
+        required
+        class="p-2 rounded-md border border-orange-500 focus:outline-orange-500"
+      />
+    </div>
+  </main>
+  <footer class="mt-10">
+    <button
+      (click)="register()"
+      type="submit"
+      class="w-full bg-orange-500 hover:bg-orange-600 text-gray-100 font-semibold p-1 rounded-md mb-5"
+    >
+      Kayıt Ol
+    </button>
+    <span class="text-sm text-gray-500">
+      Hesabınız Varmı ?
+      <a
+        href="/user/login"
+        class="text-orange-400 hover:text-orange-600 font-bold ms-2"
+      >
+        Giriş Yapın
+      </a>
+    </span>
+  </footer>
+</form>
