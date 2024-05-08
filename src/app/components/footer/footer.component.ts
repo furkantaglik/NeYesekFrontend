@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { LucideAngularModule } from 'lucide-angular';
 
 @Component({
@@ -7,4 +7,7 @@ import { LucideAngularModule } from 'lucide-angular';
   imports: [LucideAngularModule],
   templateUrl: './footer.component.html',
 })
-export class FooterComponent {}
+export class FooterComponent implements OnInit {
+  constructor() {}
+  ngOnInit(): void {}
+}

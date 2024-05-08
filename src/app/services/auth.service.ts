@@ -6,6 +6,7 @@ import { TokenModel } from '../models/auth/tokenModel';
 import { env } from '../../environments/environment';
 import { UserRegisterModel } from '../models/auth/userRegisterModel';
 import { RestaurantRegisterModel } from '../models/auth/restaurantRegisterModel';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -13,26 +14,34 @@ import { RestaurantRegisterModel } from '../models/auth/restaurantRegisterModel'
 export class AuthService {
   constructor(private httpClient: HttpClient) {}
 
-  userLogin(loginModel: LoginModel) {
+  userLogin(
+    loginModel: LoginModel
+  ): Observable<SingleResponseModel<TokenModel>> {
     return this.httpClient.post<SingleResponseModel<TokenModel>>(
       env.apiUrl + 'Auth/userlogin',
       loginModel
     );
   }
-  userRegister(userRegisterModel: UserRegisterModel) {
+  userRegister(
+    userRegisterModel: UserRegisterModel
+  ): Observable<SingleResponseModel<TokenModel>> {
     return this.httpClient.post<SingleResponseModel<TokenModel>>(
       env.apiUrl + 'Auth/userregister',
       userRegisterModel
     );
   }
 
-  restaurantLogin(loginModel: LoginModel) {
+  restaurantLogin(
+    loginModel: LoginModel
+  ): Observable<SingleResponseModel<TokenModel>> {
     return this.httpClient.post<SingleResponseModel<TokenModel>>(
       env.apiUrl + 'Auth/restaurantlogin',
       loginModel
     );
   }
-  restaurantRegister(restaurantRegisterModel: RestaurantRegisterModel) {
+  restaurantRegister(
+    restaurantRegisterModel: RestaurantRegisterModel
+  ): Observable<SingleResponseModel<TokenModel>> {
     return this.httpClient.post<SingleResponseModel<TokenModel>>(
       env.apiUrl + 'Auth/restaurantregister',
       restaurantRegisterModel
