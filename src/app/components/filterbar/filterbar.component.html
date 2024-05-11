@@ -1,5 +1,202 @@
 <section
-  class="h-[300px] md:sticky top-20 z-10 shadow-lg p-2 rounded-md bg-gray-100"
+  class="h-[670px] md:sticky top-20 z-10 shadow-lg p-2 rounded-md bg-gray-100 overflow-y-auto"
 >
-  <h1 class="text-xl font-extrabold">Filtreler</h1>
+  <div
+    class="flex justify-between items-center mb-5 border-b border-orange-600 pb-1"
+  >
+    <h1 class="text-xl font-bold text-gray-900">Filtrele</h1>
+    <button class="text-orange-500 p-1 hover:bg-orange-200 rounded-md">
+      Temizle
+    </button>
+  </div>
+  <div class="grid gap-y-2">
+    <h3 class="font-bold text-orange-600">Sıralama</h3>
+    <div class="flex items-center gap-x-2">
+      <input
+        type="radio"
+        name="arrangement"
+        id="suggested"
+        class="w-5 h-5 accent-orange-600 cursor-pointer"
+      />
+      <label for="suggested" class="hover:text-orange-600 cursor-pointer"
+        >Önerilen</label
+      >
+    </div>
+    <div class="flex items-center gap-x-2">
+      <input
+        type="radio"
+        name="arrangement"
+        id="deliveryTime"
+        class="w-5 h-5 accent-orange-600 cursor-pointer"
+      />
+      <label for="deliveryTime" class="hover:text-orange-600 cursor-pointer"
+        >Teslimat Süresi</label
+      >
+    </div>
+    <div class="flex items-center gap-x-2">
+      <input
+        type="radio"
+        name="arrangement"
+        id="restaurantScore"
+        class="w-5 h-5 accent-orange-600 cursor-pointer"
+      />
+      <label for="restaurantScore" class="hover:text-orange-600 cursor-pointer"
+        >Restoran Puanı</label
+      >
+    </div>
+  </div>
+  <div class="grid gap-y-2 mt-5">
+    <h3 class="font-bold text-orange-600">Mutfak</h3>
+    <div class="flex items-center gap-x-2">
+      <input
+        type="checkbox"
+        name="kitchen"
+        id="fish"
+        class="w-5 h-5 accent-orange-600 cursor-pointer"
+      />
+      <label for="fish" class="hover:text-orange-600 cursor-pointer"
+        >Deniz ürünleri
+      </label>
+    </div>
+    <div class="flex items-center gap-x-2">
+      <input
+        type="checkbox"
+        name="kitchen"
+        id="breakfast"
+        class="w-5 h-5 accent-orange-600 cursor-pointer"
+      />
+      <label for="breakfast" class="hover:text-orange-600 cursor-pointer"
+        >Kahvaltılık
+      </label>
+    </div>
+    <div class="flex items-center gap-x-2">
+      <input
+        type="checkbox"
+        name="kitchen"
+        id="homefood"
+        class="w-5 h-5 accent-orange-600 cursor-pointer"
+      />
+      <label for="homefood" class="hover:text-orange-600 cursor-pointer"
+        >Ev Yemekleri
+      </label>
+    </div>
+    <div class="flex items-center gap-x-2">
+      <input
+        type="checkbox"
+        name="kitchen"
+        id="worldKitchen"
+        class="w-5 h-5 accent-orange-600 cursor-pointer"
+      />
+      <label for="worldKitchen" class="hover:text-orange-600 cursor-pointer"
+        >Dünya Mutfağı
+      </label>
+    </div>
+    <div class="flex items-center gap-x-2">
+      <input
+        type="checkbox"
+        name="kitchen"
+        id="burger"
+        class="w-5 h-5 accent-orange-600 cursor-pointer"
+      />
+      <label for="burger" class="hover:text-orange-600 cursor-pointer"
+        >Burger</label
+      >
+    </div>
+    <div class="flex items-center gap-x-2">
+      <input
+        type="checkbox"
+        name="kitchen"
+        id="pizza"
+        class="w-5 h-5 accent-orange-600 cursor-pointer"
+      />
+      <label for="pizza" class="hover:text-orange-600 cursor-pointer"
+        >Pizza</label
+      >
+    </div>
+    <div class="flex items-center gap-x-2">
+      <input
+        type="checkbox"
+        name="kitchen"
+        id="doner"
+        class="w-5 h-5 accent-orange-600 cursor-pointer"
+      />
+      <label for="doner" class="hover:text-orange-600 cursor-pointer"
+        >Döner</label
+      >
+    </div>
+  </div>
+  <div class="grid gap-y-2 mt-5">
+    <h3 class="font-bold text-orange-600">Ödeme Seçenekleri</h3>
+    <div class="flex items-center gap-x-2">
+      <input
+        type="radio"
+        name="payment"
+        id="all"
+        class="w-5 h-5 accent-orange-600 cursor-pointer"
+      />
+      <label for="all" class="hover:text-orange-600 cursor-pointer">Tümü</label>
+    </div>
+    <div class="flex items-center gap-x-2">
+      <input
+        type="radio"
+        name="payment"
+        id="online"
+        class="w-5 h-5 accent-orange-600 cursor-pointer"
+      />
+      <label for="online" class="hover:text-orange-600 cursor-pointer"
+        >Online</label
+      >
+    </div>
+    <div class="flex items-center gap-x-2">
+      <input
+        type="radio"
+        name="payment"
+        id="cash"
+        class="w-5 h-5 accent-orange-600 cursor-pointer"
+      />
+      <label for="cash" class="hover:text-orange-600 cursor-pointer"
+        >Nakit</label
+      >
+    </div>
+    <div class="flex items-center gap-x-2">
+      <input
+        type="radio"
+        name="payment"
+        id="cash"
+        class="w-5 h-5 accent-orange-600 cursor-pointer"
+      />
+      <label for="cash" class="hover:text-orange-600 cursor-pointer"
+        >Kapıda Kart</label
+      >
+    </div>
+  </div>
+  <div class="grid gap-y-2 mt-5">
+    <h3 class="font-bold text-orange-600">Minimum Sepet Tutarı</h3>
+
+    <div class="relative mb-6 grid grid-cols-5">
+      <input
+        id="labels-range-input"
+        type="range"
+        value="2"
+        min="0"
+        max="5"
+        class="w-full accent-orange-600 col-span-5"
+      />
+      <span class="text-sm text-gray-500 dark:text-gray-400 text-center"
+        >₺0</span
+      >
+      <span class="text-sm text-gray-500 dark:text-gray-400 text-center"
+        >₺50</span
+      >
+      <span class="text-sm text-gray-500 dark:text-gray-400 text-center"
+        >₺100</span
+      >
+      <span class="text-sm text-gray-500 dark:text-gray-400 text-center"
+        >₺200</span
+      >
+      <span class="text-sm text-gray-500 dark:text-gray-400 text-center"
+        >₺500</span
+      >
+    </div>
+  </div>
 </section>

@@ -3,6 +3,10 @@ import { SearchbarComponent } from '../searchbar/searchbar.component';
 import { FilterbarComponent } from '../filterbar/filterbar.component';
 import { LucideAngularModule } from 'lucide-angular';
 import { CommonModule } from '@angular/common';
+import { RestaurantcardComponent } from '../restaurantcard/restaurantcard.component';
+import { RestaurantlistComponent } from '../restaurantlist/restaurantlist.component';
+import { KitchenlistComponent } from '../kitchenlist/kitchenlist.component';
+import { CampaignlistComponent } from '../campaignlist/campaignlist.component';
 
 @Component({
   selector: 'app-home',
@@ -12,6 +16,10 @@ import { CommonModule } from '@angular/common';
     FilterbarComponent,
     LucideAngularModule,
     CommonModule,
+    RestaurantcardComponent,
+    RestaurantlistComponent,
+    KitchenlistComponent,
+    CampaignlistComponent,
   ],
   templateUrl: './home.component.html',
 })

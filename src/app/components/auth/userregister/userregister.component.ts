@@ -5,43 +5,44 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { AuthService } from '../../services/auth.service';
 import { ToastrService } from 'ngx-toastr';
 import { CommonModule } from '@angular/common';
-import { Route, Router } from '@angular/router';
-import { jwtDecode } from 'jwt-decode';
-import { Token } from '@angular/compiler';
+import { Router } from '@angular/router';
+import { AuthService } from '../../../services/auth.service';
 
 @Component({
-  selector: 'app-userlogin',
+  selector: 'app-userregister',
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule],
-  templateUrl: './userlogin.component.html',
+  templateUrl: './userregister.component.html',
 })
-export class UserloginComponent implements OnInit {
-  loginForm!: FormGroup;
+export class UserregisterComponent implements OnInit {
+  registerForm!: FormGroup;
   constructor(
     private formBuilder: FormBuilder,
     private authService: AuthService,
     private toastrService: ToastrService,
     private router: Router
   ) {}
-
   ngOnInit(): void {
-    this.createLoginForm();
+    this.createRegisterForm();
   }
 
-  createLoginForm() {
-    this.loginForm = this.formBuilder.group({
+  createRegisterForm() {
+    this.registerForm = this.formBuilder.group({
+      firstName: ['', Validators.required],
+      lastName: ['', Validators.required],
+      adress: ['', Validators.required],
+      telNo: ['', Validators.required],
       email: ['', Validators.required],
       password: ['', Validators.required],
     });
   }
-
-  login() {
-    if (this.loginForm.valid) {
-      let loginModel = Object.assign({}, this.loginForm.value);
-      this.authService.userLogin(loginModel).subscribe(
+  register() {
+    if (this.registerForm.valid) {
+      let registerModel = Object.assign({}, this.registerForm.value);
+      registerModel.telNo = registerModel.telNo.toString();
+      this.authService.userRegister(registerModel).subscribe(
         (response) => {
           localStorage.setItem('token', response.data.token);
           localStorage.setItem('expiration', response.data.expiration);

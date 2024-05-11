@@ -1,10 +1,10 @@
 import { Routes } from '@angular/router';
 import { HomeComponent } from './components/home/home.component';
-import { UserloginComponent } from './components/userlogin/userlogin.component';
-import { UserregisterComponent } from './components/userregister/userregister.component';
-import { RestaurantloginComponent } from './components/restaurantlogin/restaurantlogin.component';
-import { RestaurantregisterComponent } from './components/restaurantregister/restaurantregister.component';
 import { AuthGuard } from './guards/auth.guard';
+import { UserloginComponent } from './components/auth/userlogin/userlogin.component';
+import { UserregisterComponent } from './components/auth/userregister/userregister.component';
+import { RestaurantloginComponent } from './components/auth/restaurantlogin/restaurantlogin.component';
+import { RestaurantregisterComponent } from './components/auth/restaurantregister/restaurantregister.component';
 
 export const routes: Routes = [
   {

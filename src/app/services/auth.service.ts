@@ -62,4 +62,20 @@ export class AuthService {
       return false;
     }
   }
+
+  isRestaurant() {
+    if (localStorage.getItem('restaurantId')) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  isUser() {
+    if (localStorage.getItem('userId')) {
+      return true;
+    } else {
+      return false;
+    }
+  }
 }
