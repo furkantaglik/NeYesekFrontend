@@ -17,6 +17,7 @@ export class AuthService {
   userLogin(
     loginModel: LoginModel
   ): Observable<SingleResponseModel<TokenModel>> {
+    this.logOut();
     return this.httpClient.post<SingleResponseModel<TokenModel>>(
       env.apiUrl + 'Auth/userlogin',
       loginModel
@@ -25,6 +26,7 @@ export class AuthService {
   userRegister(
     userRegisterModel: UserRegisterModel
   ): Observable<SingleResponseModel<TokenModel>> {
+    this.logOut();
     return this.httpClient.post<SingleResponseModel<TokenModel>>(
       env.apiUrl + 'Auth/userregister',
       userRegisterModel
@@ -34,6 +36,7 @@ export class AuthService {
   restaurantLogin(
     loginModel: LoginModel
   ): Observable<SingleResponseModel<TokenModel>> {
+    this.logOut();
     return this.httpClient.post<SingleResponseModel<TokenModel>>(
       env.apiUrl + 'Auth/restaurantlogin',
       loginModel
@@ -42,6 +45,7 @@ export class AuthService {
   restaurantRegister(
     restaurantRegisterModel: RestaurantRegisterModel
   ): Observable<SingleResponseModel<TokenModel>> {
+    this.logOut();
     return this.httpClient.post<SingleResponseModel<TokenModel>>(
       env.apiUrl + 'Auth/restaurantregister',
       restaurantRegisterModel

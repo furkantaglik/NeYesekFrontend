@@ -24,6 +24,9 @@ import {
   Soup,
   LogOut,
   Clock,
+  Bike,
+  Star,
+  SquareUserRound,
 } from 'lucide-angular';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
 
@@ -51,6 +54,9 @@ export const appConfig: ApplicationConfig = {
         Soup,
         LogOut,
         Clock,
+        Bike,
+        Star,
+        SquareUserRound,
       })
     ),
   ],

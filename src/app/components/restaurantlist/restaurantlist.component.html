@@ -2,14 +2,8 @@
 <section
   class="grid grid-cols-2 xs:grid-cols-2 sm:grid-cols-2 md:grid-cols-3 gap-5"
 >
-  <app-restaurantcard />
-  <app-restaurantcard />
-  <app-restaurantcard />
-  <app-restaurantcard />
-  <app-restaurantcard />
-  <app-restaurantcard />
-  <app-restaurantcard />
-  <app-restaurantcard />
-  <app-restaurantcard />
-  <app-restaurantcard />
+  <app-restaurantcard
+    *ngFor="let restaurantDetail of restaurantsDetails"
+    [restaurantDetail]="restaurantDetail"
+  />
 </section>

@@ -10,10 +10,19 @@ export interface Menu {
   restaurant: Restaurant;
   products?: Product[];
   productMenu: ProductMenu[];
+  menuImage: MenuImage;
 }
 
 export interface MenuDetail {
   products: Product[];
   restaurant: Restaurant;
+  menu: Menu;
+  menuImage: MenuImage;
+}
+
+export interface MenuImage {
+  id: number;
+  imagePath: string;
+  menuId: number;
   menu: Menu;
 }

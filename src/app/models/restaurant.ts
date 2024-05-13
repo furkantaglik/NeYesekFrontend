@@ -14,6 +14,7 @@ export interface Restaurant {
   categories?: Category[];
   products?: Product[];
   menus?: Menu[];
+  restaurantImage: RestaurantImage;
 }
 
 export interface RestaurantDetail {
@@ -22,6 +23,14 @@ export interface RestaurantDetail {
   menus: Menu[];
   products: Product[];
   categories: Category[];
+  restaurantImage: RestaurantImage;
+}
+
+export interface RestaurantImage {
+  id: number;
+  imagePath: string;
+  restaurantId: number;
+  restaurantImage: Restaurant;
 }
 
 export interface RestaurantOperationClaim {

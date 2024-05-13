@@ -16,8 +16,14 @@
   <nav class="flex gap-x-3 text-orange-600">
     <div
       (click)="setLoginDropdown()"
-      class="rounded-full p-1 hover:bg-orange-100 cursor-pointer group"
+      class="rounded-full p-1 hover:bg-orange-100 cursor-pointer group flex justify-center items-center"
     >
+      <span *ngIf="isUser()" class="font-semibold">{{ user.firstName }}</span>
+
+      <span *ngIf="isRestaurant()" class="font-semibold">{{
+        restaurant.name
+      }}</span>
+
       <lucide-icon name="user" class="my-icon group-hover:fill-orange-600" />
     </div>
 
@@ -51,6 +57,17 @@
       >
         <lucide-icon name="log_out" />
         <span>Çıkış Yap</span>
+      </div>
+      <div
+        [routerLink]="
+          isUser() ? 'user/account/profile' : 'restaurant/account/profile'
+        "
+        (click)="setLoginDropdown()"
+        *ngIf="isAuthenticated()"
+        class="flex justify-center gap-x-1 items-center p-1 hover:bg-orange-200 rounded-md cursor-pointer"
+      >
+        <lucide-icon name="squareUserRound" />
+        <span>Hesabım</span>
       </div>
     </div>
 

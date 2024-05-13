@@ -15,49 +15,51 @@ export class RestaurantService {
 
   getAll(): Observable<ListResponseModel<Restaurant>> {
     return this.httpClient.get<ListResponseModel<Restaurant>>(
-      env.apiUrl + 'restaurant/getall'
+      env.apiUrl + 'restaurants/getall'
     );
   }
 
   getById(id: number): Observable<SingleResponseModel<Restaurant>> {
     return this.httpClient.get<SingleResponseModel<Restaurant>>(
-      env.apiUrl + 'restaurant/getbyid?id=' + id
+      env.apiUrl + 'restaurants/getbyid?id=' + id
     );
   }
 
   getByMail(mail: String): Observable<SingleResponseModel<Restaurant>> {
     return this.httpClient.get<SingleResponseModel<Restaurant>>(
-      env.apiUrl + 'restaurant/getbymail?mail=' + mail
+      env.apiUrl + 'restaurants/getbymail?mail=' + mail
     );
   }
 
   getAllRestaurantDetail(): Observable<ListResponseModel<RestaurantDetail>> {
     return this.httpClient.get<ListResponseModel<RestaurantDetail>>(
-      env.apiUrl + 'restaurant/getallrestaurantdetails'
+      env.apiUrl + 'restaurants/getallrestaurantdetails'
     );
   }
   getRestaurantDetail(
     restaurantId: number
-  ): Observable<SingleResponseModel<Restaurant>> {
-    return this.httpClient.get<SingleResponseModel<Restaurant>>(
-      env.apiUrl + 'restaurant/getrestaurantdetail?restaurantId=' + restaurantId
+  ): Observable<SingleResponseModel<RestaurantDetail>> {
+    return this.httpClient.get<SingleResponseModel<RestaurantDetail>>(
+      env.apiUrl +
+        'restaurants/getrestaurantdetail?restaurantId=' +
+        restaurantId
     );
   }
   add(restaurant: Restaurant): Observable<ResponseModel> {
     return this.httpClient.post<ResponseModel>(
-      env.apiUrl + 'restaurant/add',
+      env.apiUrl + 'restaurants/add',
       restaurant
     );
   }
   update(restaurant: Restaurant): Observable<ResponseModel> {
     return this.httpClient.post<ResponseModel>(
-      env.apiUrl + 'restaurant/update',
+      env.apiUrl + 'restaurants/update',
       restaurant
     );
   }
   remove(restaurant: Restaurant): Observable<ResponseModel> {
     return this.httpClient.post<ResponseModel>(
-      env.apiUrl + 'restaurant/remove',
+      env.apiUrl + 'restaurants/remove',
       restaurant
     );
   }

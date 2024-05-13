@@ -1,0 +1,40 @@
+<section class="grid grid-cols-12 gap-x-10">
+  <div
+    class="md:col-span-3 col-span-12 md:sticky md:top-20 top-12 bg-white rounded-md border flex flex-col justify-center items-center gap-y-3 h-fit pb-10 p-3"
+  >
+    <h1
+      class="text-3xl text-center font-semibold border-b-2 border-orange-500 mb-5"
+    >
+      Hesabım
+    </h1>
+    <a
+      routerLink="profile"
+      routerLinkActive="text-orange-500"
+      class="font-semibold hover:text-orange-500 border px-3 rounded-md bg-slate-100 w-full text-center"
+      >Profilim</a
+    >
+    <a
+      routerLink="favorites"
+      routerLinkActive="text-orange-500"
+      class="font-semibold hover:text-orange-500 border px-3 rounded-md bg-slate-100 w-full text-center"
+      >Favoriler</a
+    >
+    <a
+      routerLink="history"
+      routerLinkActive="text-orange-500"
+      class="font-semibold hover:text-orange-500 border px-3 rounded-md bg-slate-100 w-full text-center"
+      >Geçmiş</a
+    >
+    <a
+      routerLink="orders"
+      routerLinkActive="text-orange-500"
+      class="font-semibold hover:text-orange-500 border px-3 rounded-md bg-slate-100 w-full text-center"
+      >Siparişler</a
+    >
+  </div>
+  <div
+    class="md:col-span-9 col-span-12 bg-gray-200 w-full rounded-md p-3 h-screen"
+  >
+    <router-outlet />
+  </div>
+</section>

@@ -1,0 +1,96 @@
+<section>
+  <div class="font-semibold text-sm mb-5 md:block hidden">
+    <a
+      href="/"
+      class="text-orange-500 underline hover:decoration-2 transition-all underline-offset-2"
+      >AnaSayfa</a
+    >
+    >
+    <a href=""> {{ restaurantDetail.restaurant.name }}</a>
+  </div>
+  <div class="border-b pb-5">
+    <div
+      class="grid grid-cols-12 justify-center items-center md:gap-x-5 gap-x-3"
+    >
+      <div class="col-span-2">
+        <img
+          [src]="
+            'https://localhost:44384/images/restaurant/' +
+            restaurantDetail.restaurantImage.imagePath
+          "
+          [alt]="restaurantDetail.restaurant.name"
+          class="object-fill w-full md:h-[150px] h-[80px] rounded-md shadow-lg md:p-2"
+        />
+      </div>
+      <div class="col-span-10">
+        <div>
+          <span
+            *ngFor="let category of restaurantDetail.categories"
+            class="text-md text-gray-600"
+            >{{ category.name }} -
+          </span>
+          <h1 class="text-3xl font-semibold justify-between flex items-center">
+            {{ restaurantDetail.restaurant.name }}
+          </h1>
+        </div>
+        <div class="font-semibold flex items-center gap-x-1 text-sm md:mt-5">
+          <lucide-icon name="bike" class="my-icon w-4 h-4" />
+          Ücretsiz -
+          <lucide-icon name="shoppingCart" class="my-icon w-4 h-4" />
+          Minimum ₺80
+        </div>
+        <div class="flex items-center justify-between">
+          <div class="flex justify-center items-center">
+            <lucide-icon name="star" class="my-icon w-4 h-4 fill-orange-500" />
+            3.9 (300+)
+            <button
+              class="p-1 text-orange-600 rounded-md transition-all font-semibold hover:bg-orange-100"
+            >
+              Yorumlar
+            </button>
+            -
+            <button
+              class="p-1 text-orange-600 rounded-md transition-all font-semibold hover:bg-orange-100"
+            >
+              Hakkında
+            </button>
+          </div>
+          <button
+            class="text-sm flex justify-center items-center gap-x-1 md:p-1 text-orange-600 transition-all md:border-orange-400 md:border rounded-md md:hover:bg-orange-200 md:hover:border-orange-500"
+          >
+            <lucide-icon name="heart" class="hover:fill-orange-500" />
+            <span class="md:block hidden">Favorile</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- ürünler -->
+  <div class="border-b flex gap-x-5">
+    <div
+      class="hover:bg-orange-100 p-2 rounded-md cursor-pointer hover:border-b-2 hover:border-orange-500"
+    >
+      <h1 class="font-semibold">Menüler</h1>
+    </div>
+    <div
+      class="hover:bg-orange-100 p-2 rounded-md cursor-pointer hover:border-b-2 hover:border-orange-500"
+    >
+      <h1 class="font-semibold">ürünler</h1>
+    </div>
+    <div
+      class="hover:bg-orange-100 p-2 rounded-md cursor-pointer hover:border-b-2 hover:border-orange-500"
+    >
+      <h1 class="font-semibold">Neyesek Özel Menüler</h1>
+    </div>
+    <div
+      class="hover:bg-orange-100 p-2 rounded-md cursor-pointer hover:border-b-2 hover:border-orange-500"
+    >
+      <h1 class="font-semibold">CocoCola Menüleri</h1>
+    </div>
+    <div
+      class="hover:bg-orange-100 p-2 rounded-md cursor-pointer hover:border-b-2 hover:border-orange-500"
+    >
+      <h1 class="font-semibold">Tatlılar</h1>
+    </div>
+  </div>
+</section>
