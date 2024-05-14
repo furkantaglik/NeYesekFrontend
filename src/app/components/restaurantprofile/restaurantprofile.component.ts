@@ -4,18 +4,21 @@ import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { RestaurantService } from '../../services/restaurant.service';
 import { ToastrService } from 'ngx-toastr';
 import { RestaurantDetail, RestaurantImage } from '../../models/restaurant';
+import { LucideAngularModule } from 'lucide-angular';
+import { env } from '../../../environments/environment';
 
 @Component({
   selector: 'app-restaurantprofile',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule, LucideAngularModule],
   templateUrl: './restaurantprofile.component.html',
 })
 export class RestaurantprofileComponent implements OnInit {
   profileForm!: FormGroup;
   restaurantDetail!: RestaurantDetail;
   file!: File;
-  restaurantImage!: RestaurantImage;
+  restaurantImage!: any;
+  path: string = env.restaurantImagepath;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -46,14 +49,50 @@ export class RestaurantprofileComponent implements OnInit {
 
   onFileSelected(event: any) {
     this.file = event.target.files[0];
+    if (this.restaurantDetail.restaurantImage) {
+      this.restaurantImage = {
+        restaurantId: this.restaurantDetail.restaurant.id,
+        restaurant: this.restaurantDetail.restaurant,
+        id: this.restaurantDetail.restaurantImage.id,
+      };
+    } else {
+      this.restaurantImage = {
+        restaurantId: this.restaurantDetail.restaurant.id,
+        restaurant: this.restaurantDetail.restaurant,
+      };
+    }
   }
+
+  //image
+  deleteImage() {
+    this.restaurantService
+      .deleteImage(this.restaurantDetail.restaurantImage!)
+      .subscribe((response) => {
+        this.toastrService.info(response.message);
+        this.restaurantDetail.restaurantImage = null;
+      });
+  }
+  updateImage() {
+    this.restaurantService
+      .updateImage(this.restaurantImage, this.file)
+      .subscribe((response) => {
+        this.restaurantDetail.restaurantImage = response.data;
+        this.toastrService.info(response.message);
+      });
+    this.restaurantImage = null;
+  }
+  addImage() {
+    this.restaurantService
+      .addImage(this.restaurantImage, this.file)
+      .subscribe((response) => {
+        this.restaurantDetail.restaurantImage = response.data;
+        this.toastrService.info(response.message);
+      });
+    this.restaurantImage = null;
+  }
+
   save() {
     let restaurantModel = Object.assign({}, this.profileForm.value);
-    let model = {
-      id: this.restaurantDetail.restaurantImage.id,
-      restaurantId: this.restaurantDetail.restaurant.id,
-      restaurant: this.restaurantDetail.restaurant,
-    };
     this.restaurantService.update(restaurantModel).subscribe(
       (response) => {
         this.toastrService.info(response.message);
@@ -63,10 +102,8 @@ export class RestaurantprofileComponent implements OnInit {
       }
     );
 
-    this.restaurantService
-      .updateImage(model, this.file)
-      .subscribe((response) => {
-        this.toastrService.info(response.message);
-      });
+    this.restaurantDetail.restaurantImage
+      ? this.updateImage()
+      : this.addImage();
   }
 }

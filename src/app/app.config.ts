@@ -27,8 +27,10 @@ import {
   Bike,
   Star,
   SquareUserRound,
+  Trash2,
 } from 'lucide-angular';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
+import { IMAGE_CONFIG } from '@angular/common';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -36,6 +38,13 @@ export const appConfig: ApplicationConfig = {
     provideHttpClient(withFetch(), withInterceptors([AuthInterceptor])),
     provideAnimations(),
     provideNoopAnimations(),
+    {
+      provide: IMAGE_CONFIG,
+      useValue: {
+        disableImageSizeWarning: true,
+        disableImageLazyLoadWarning: true,
+      },
+    },
     provideToastr({
       timeOut: 5000,
       positionClass: 'toast-bottom-left',
@@ -57,6 +66,7 @@ export const appConfig: ApplicationConfig = {
         Bike,
         Star,
         SquareUserRound,
+        Trash2,
       })
     ),
   ],

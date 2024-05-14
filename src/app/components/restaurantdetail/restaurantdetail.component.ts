@@ -6,6 +6,7 @@ import { LucideAngularModule } from 'lucide-angular';
 import { RestaurantService } from '../../services/restaurant.service';
 import { Restaurant, RestaurantDetail } from '../../models/restaurant';
 import { ToastrService } from 'ngx-toastr';
+import { env } from '../../../environments/environment';
 
 @Component({
   selector: 'app-restaurantdetail',
@@ -15,6 +16,7 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class RestaurantdetailComponent implements OnInit {
   restaurantDetail!: RestaurantDetail;
+  path: string = env.restaurantImagepath;
   constructor(
     private route: ActivatedRoute,
     private restaurantservice: RestaurantService,

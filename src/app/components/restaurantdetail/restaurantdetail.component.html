@@ -1,4 +1,4 @@
-<section>
+<section *ngIf="restaurantDetail">
   <div class="font-semibold text-sm mb-5 md:block hidden">
     <a
       href="/"
@@ -15,8 +15,9 @@
       <div class="col-span-2">
         <img
           [src]="
-            'https://localhost:44384/images/restaurant/' +
-            restaurantDetail.restaurantImage.imagePath
+            restaurantDetail.restaurantImage
+              ? path + restaurantDetail.restaurantImage.imagePath
+              : path + 'default.jpg'
           "
           [alt]="restaurantDetail.restaurant.name"
           class="object-fill w-full md:h-[150px] h-[80px] rounded-md shadow-lg md:p-2"

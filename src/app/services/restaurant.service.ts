@@ -61,27 +61,44 @@ export class RestaurantService {
       restaurant
     );
   }
-  updateImage(restaurantImage: any, file: any): Observable<ResponseModel> {
-    const formData = new FormData();
-    formData.append('image', file);
-    formData.append('restaurantImage', JSON.stringify(restaurantImage));
-    console.log(JSON.stringify(restaurantImage));
-
-    // var data = JSON.stringify(restaurantImage);
-    return this.httpClient.post<ResponseModel>(
-      env.apiUrl + `restaurantImage/update`,
-      formData
-      // env.apiUrl + 'restaurantImage/update',
-      // {
-      //   Image: file,
-      //   restaurantImage: restaurantImage,
-      // }
-    );
-  }
   remove(restaurant: Restaurant): Observable<ResponseModel> {
     return this.httpClient.post<ResponseModel>(
       env.apiUrl + 'restaurants/remove',
       restaurant
+    );
+  }
+
+  //images
+  updateImage(
+    restaurantImage: RestaurantImage,
+    file: File
+  ): Observable<SingleResponseModel<RestaurantImage>> {
+    const formData = new FormData();
+    formData.append('image', file);
+    formData.append('restaurantImage', JSON.stringify(restaurantImage));
+    return this.httpClient.post<SingleResponseModel<RestaurantImage>>(
+      env.apiUrl + `restaurantImage/update`,
+      formData
+    );
+  }
+  addImage(
+    restaurantImage: RestaurantImage,
+    file: File
+  ): Observable<SingleResponseModel<RestaurantImage>> {
+    const formData = new FormData();
+    formData.append('image', file);
+    formData.append('restaurantImage', JSON.stringify(restaurantImage));
+    return this.httpClient.post<SingleResponseModel<RestaurantImage>>(
+      env.apiUrl + `restaurantImage/add`,
+      formData
+    );
+  }
+  deleteImage(restaurantImage: RestaurantImage): Observable<ResponseModel> {
+    const formData = new FormData();
+    formData.append('restaurantImage', JSON.stringify(restaurantImage));
+    return this.httpClient.post<ResponseModel>(
+      env.apiUrl + `restaurantImage/remove`,
+      formData
     );
   }
 }

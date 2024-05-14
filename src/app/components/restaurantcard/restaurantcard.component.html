@@ -5,8 +5,9 @@
   <div class="inline-flex overflow-hidden">
     <img
       [src]="
-        'https://localhost:44384/images/restaurant/' +
-        restaurantDetail.restaurantImage.imagePath
+        restaurantDetail.restaurantImage
+          ? path + restaurantDetail.restaurantImage.imagePath
+          : path + 'default.jpg'
       "
       alt=""
       class="rounded-md h-[180px] inline-flex group-hover:scale-105 transition-all"

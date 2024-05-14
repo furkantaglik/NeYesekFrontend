@@ -1,8 +1,9 @@
-<section>
-  <form class="grid md:grid-cols-2 gap-x-5 gap-y-3">
-    <h1 class="col-span-2 text-2xl font-semibold underline underline-offset-4">
-      Kişisel Bilgiler
-    </h1>
+<section *ngIf="userDetail">
+  <form
+    [formGroup]="profileForm"
+    class="grid md:grid-cols-2 gap-x-5 gap-y-3 border-black pb-4 border-b"
+  >
+    <h1 class="col-span-2 text-2xl font-semibold">Kişisel Bilgiler</h1>
     <div class="flex flex-col">
       <label for="firstName" class="font-bold ms-1"> İsim </label>
       <input
@@ -10,6 +11,7 @@
         id="firstName"
         placeholder=""
         formControlName="firstName"
+        [placeholder]="userDetail.user.firstName"
         required
         class="p-2 rounded-md border border-orange-500 focus:outline-orange-500"
       />
@@ -21,17 +23,19 @@
         id="lastName"
         placeholder=""
         formControlName="lastName"
+        [placeholder]="userDetail.user.lastName"
         required
         class="p-2 rounded-md border border-orange-500 focus:outline-orange-500"
       />
     </div>
     <div class="flex flex-col">
-      <label for="Email" class="font-bold ms-1"> Email </label>
+      <label for="email" class="font-bold ms-1"> Email </label>
       <input
         type="text"
-        id="Email"
+        id="email"
         placeholder=""
-        formControlName="Email"
+        formControlName="email"
+        [placeholder]="userDetail.user.email"
         required
         class="p-2 rounded-md border border-orange-500 focus:outline-orange-500"
       />
@@ -43,6 +47,7 @@
         id="telNo"
         placeholder=""
         formControlName="telNo"
+        [placeholder]="userDetail.user.telNo"
         required
         class="p-2 rounded-md border border-orange-500 focus:outline-orange-500"
       />
@@ -54,19 +59,21 @@
         id="adress"
         placeholder=""
         formControlName="adress"
+        [placeholder]="userDetail.user.adress"
         required
         class="p-2 rounded-md border border-orange-500 focus:outline-orange-500"
       />
     </div>
     <div class="flex flex-col col-span-2">
       <button
+        (click)="save()"
         class="bg-orange-400 hover:bg-orange-500 md:w-32 p-2 mt-6 rounded-md font-semibold"
       >
         Kaydet
       </button>
     </div>
   </form>
-  <form class="grid md:grid-cols-2 gap-x-5 gap-y-3">
+  <!-- <form class="grid md:grid-cols-2 gap-x-5 gap-y-3">
     <h1
       class="col-span-2 text-2xl font-semibold mt-10 underline underline-offset-8"
     >
@@ -101,5 +108,5 @@
         Kaydet
       </button>
     </div>
-  </form>
+  </form> -->
 </section>

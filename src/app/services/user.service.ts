@@ -36,8 +36,8 @@ export class UserService {
       env.apiUrl + 'user/getalluserdetails'
     );
   }
-  getUserDetail(userId: number): Observable<SingleResponseModel<User>> {
-    return this.httpClient.get<SingleResponseModel<User>>(
+  getUserDetail(userId: number): Observable<SingleResponseModel<UserDetail>> {
+    return this.httpClient.get<SingleResponseModel<UserDetail>>(
       env.apiUrl + 'user/getuserdetail?userId=' + userId
     );
   }

@@ -23,7 +23,7 @@ export interface RestaurantDetail {
   menus: Menu[];
   products: Product[];
   categories: Category[];
-  restaurantImage: RestaurantImage;
+  restaurantImage: RestaurantImage | null;
 }
 
 export interface RestaurantImage {
