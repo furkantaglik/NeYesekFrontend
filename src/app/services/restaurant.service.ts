@@ -5,7 +5,11 @@ import { SingleResponseModel } from '../models/response/singleResponseModel';
 import { Observable } from 'rxjs';
 import { env } from '../../environments/environment';
 import { ResponseModel } from '../models/response/responseModel';
-import { Restaurant, RestaurantDetail } from '../models/restaurant';
+import {
+  Restaurant,
+  RestaurantDetail,
+  RestaurantImage,
+} from '../models/restaurant';
 
 @Injectable({
   providedIn: 'root',
@@ -55,6 +59,23 @@ export class RestaurantService {
     return this.httpClient.post<ResponseModel>(
       env.apiUrl + 'restaurants/update',
       restaurant
+    );
+  }
+  updateImage(restaurantImage: any, file: any): Observable<ResponseModel> {
+    const formData = new FormData();
+    formData.append('image', file);
+    formData.append('restaurantImage', JSON.stringify(restaurantImage));
+    console.log(JSON.stringify(restaurantImage));
+
+    // var data = JSON.stringify(restaurantImage);
+    return this.httpClient.post<ResponseModel>(
+      env.apiUrl + `restaurantImage/update`,
+      formData
+      // env.apiUrl + 'restaurantImage/update',
+      // {
+      //   Image: file,
+      //   restaurantImage: restaurantImage,
+      // }
     );
   }
   remove(restaurant: Restaurant): Observable<ResponseModel> {

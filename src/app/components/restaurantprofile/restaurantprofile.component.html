@@ -1,5 +1,8 @@
-<section>
-  <form class="grid md:grid-cols-2 gap-x-5 gap-y-3">
+<section *ngIf="restaurantDetail">
+  <form
+    [formGroup]="profileForm"
+    class="grid md:grid-cols-2 gap-x-5 gap-y-3 border-b border-black pb-4"
+  >
     <h1 class="col-span-2 text-2xl font-semibold underline underline-offset-4">
       Restoran Bilgileri
     </h1>
@@ -8,20 +11,18 @@
       <input
         type="text"
         id="name"
-        placeholder=""
         formControlName="name"
-        required
+        [placeholder]="restaurantDetail.restaurant.name"
         class="p-2 rounded-md border border-orange-500 focus:outline-orange-500"
       />
     </div>
     <div class="flex flex-col">
-      <label for="Email" class="font-bold ms-1"> Email </label>
+      <label for="email" class="font-bold ms-1"> Email </label>
       <input
         type="text"
-        id="Email"
-        placeholder=""
-        formControlName="Email"
-        required
+        id="email"
+        formControlName="email"
+        [placeholder]="restaurantDetail.restaurant.email"
         class="p-2 rounded-md border border-orange-500 focus:outline-orange-500"
       />
     </div>
@@ -30,9 +31,8 @@
       <input
         type="text"
         id="telNo"
-        placeholder=""
         formControlName="telNo"
-        required
+        [placeholder]="restaurantDetail.restaurant.telNo"
         class="p-2 rounded-md border border-orange-500 focus:outline-orange-500"
       />
     </div>
@@ -41,30 +41,42 @@
       <input
         type="text"
         id="adress"
-        placeholder=""
         formControlName="adress"
-        required
+        [placeholder]="restaurantDetail.restaurant.adress"
         class="p-2 rounded-md border border-orange-500 focus:outline-orange-500"
       />
     </div>
-    <div class="flex flex-col">
+    <div class="flex flex-col md:col-span-1 col-span-2">
       <label for="image" class="font-bold ms-1"> Resim</label>
       <input
         type="file"
-        formControlName="image"
         id="image"
+        (change)="onFileSelected($event)"
         class="rounded-md text-sm border cursor-pointer file:cursor-pointer border-orange-500 bg-white file:bg-gray-800 file:text-white text-gray-800 file:border-0 file:p-2 file:font-semibold"
+      />
+    </div>
+    <div
+      class="flex flex-col items-center col-span-2 md:col-span-1 justify-center mt-6"
+    >
+      <img
+        [src]="
+          'https://localhost:44384/images/restaurant/' +
+          restaurantDetail.restaurantImage.imagePath
+        "
+        [alt]="restaurantDetail.restaurant.name"
+        class="rounded-md"
       />
     </div>
     <div class="flex flex-col col-span-2">
       <button
+        (click)="save()"
         class="bg-orange-400 hover:bg-orange-500 md:w-32 p-2 mt-6 rounded-md font-semibold"
       >
         Kaydet
       </button>
     </div>
   </form>
-  <form class="grid md:grid-cols-2 gap-x-5 gap-y-3">
+  <!-- <form class="grid md:grid-cols-2 gap-x-5 gap-y-3">
     <h1
       class="col-span-2 text-2xl font-semibold mt-10 underline underline-offset-8"
     >
@@ -99,5 +111,5 @@
         Kaydet
       </button>
     </div>
-  </form>
+  </form> -->
 </section>

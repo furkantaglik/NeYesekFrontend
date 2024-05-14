@@ -30,7 +30,7 @@ export interface RestaurantImage {
   id: number;
   imagePath: string;
   restaurantId: number;
-  restaurantImage: Restaurant;
+  restaurant: Restaurant;
 }
 
 export interface RestaurantOperationClaim {
