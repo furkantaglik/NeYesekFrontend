@@ -1,9 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { LucideAngularModule } from 'lucide-angular';
-import { Restaurant, RestaurantDetail } from '../../models/restaurant';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
-import { env } from '../../../environments/environment';
+import { env } from '../../../../environments/environment';
+import { RestaurantDetail } from '../../../models/restaurant';
 
 @Component({
   selector: 'app-restaurantcard',

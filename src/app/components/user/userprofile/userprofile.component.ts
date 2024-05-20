@@ -1,8 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { UserDetail } from '../../models/user';
-import { UserService } from '../../services/user.service';
+import { UserDetail } from '../../../models/user';
+import { UserService } from '../../../services/user.service';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
@@ -31,6 +31,8 @@ export class UserprofileComponent {
       email: [this.userDetail.user.email],
       telNo: [this.userDetail.user.telNo],
       adress: [this.userDetail.user.adress],
+      passwordSalt: [this.userDetail.user.passwordSalt],
+      passwordHash: [this.userDetail.user.passwordSalt],
       id: [this.userDetail.user.id],
     });
   }

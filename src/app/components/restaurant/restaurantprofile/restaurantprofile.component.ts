@@ -1,11 +1,11 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { RestaurantService } from '../../services/restaurant.service';
 import { ToastrService } from 'ngx-toastr';
-import { RestaurantDetail, RestaurantImage } from '../../models/restaurant';
 import { LucideAngularModule } from 'lucide-angular';
-import { env } from '../../../environments/environment';
+import { RestaurantDetail } from '../../../models/restaurant';
+import { env } from '../../../../environments/environment';
+import { RestaurantService } from '../../../services/restaurant.service';
 
 @Component({
   selector: 'app-restaurantprofile',
@@ -14,8 +14,8 @@ import { env } from '../../../environments/environment';
   templateUrl: './restaurantprofile.component.html',
 })
 export class RestaurantprofileComponent implements OnInit {
-  profileForm!: FormGroup;
   restaurantDetail!: RestaurantDetail;
+  profileForm!: FormGroup;
   file!: File;
   restaurantImage!: any;
   path: string = env.restaurantImagepath;
@@ -28,15 +28,6 @@ export class RestaurantprofileComponent implements OnInit {
   ngOnInit(): void {
     this.getRestaurant();
   }
-  createProfileForm() {
-    this.profileForm = this.formBuilder.group({
-      name: [this.restaurantDetail.restaurant.name],
-      email: [this.restaurantDetail.restaurant.email],
-      telNo: [this.restaurantDetail.restaurant.telNo],
-      adress: [this.restaurantDetail.restaurant.adress],
-      id: [this.restaurantDetail.restaurant.id],
-    });
-  }
 
   getRestaurant() {
     this.restaurantService
@@ -45,6 +36,21 @@ export class RestaurantprofileComponent implements OnInit {
         this.restaurantDetail = response.data;
         this.createProfileForm();
       });
+  }
+
+  createProfileForm() {
+    this.profileForm = this.formBuilder.group({
+      name: [this.restaurantDetail.restaurant.name],
+      email: [this.restaurantDetail.restaurant.email],
+      telNo: [this.restaurantDetail.restaurant.telNo],
+      adress: [this.restaurantDetail.restaurant.adress],
+      deliveryTime: [this.restaurantDetail.restaurant.deliveryTime],
+      deliveryFee: [this.restaurantDetail.restaurant.deliveryFee],
+      minCartAmount: [this.restaurantDetail.restaurant.minCartAmount],
+      passwordSalt: [this.restaurantDetail.restaurant.passwordSalt],
+      passwordHash: [this.restaurantDetail.restaurant.passwordHash],
+      id: [this.restaurantDetail.restaurant.id],
+    });
   }
 
   onFileSelected(event: any) {
@@ -102,8 +108,8 @@ export class RestaurantprofileComponent implements OnInit {
       }
     );
 
-    this.restaurantDetail.restaurantImage
+    this.restaurantDetail.restaurantImage && this.restaurantImage
       ? this.updateImage()
-      : this.addImage();
+      : this.restaurantImage! && this.addImage();
   }
 }

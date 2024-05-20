@@ -12,7 +12,7 @@
     <div
       class="grid grid-cols-12 justify-center items-center md:gap-x-5 gap-x-3"
     >
-      <div class="col-span-2">
+      <div class="col-span-2 container">
         <img
           [src]="
             restaurantDetail.restaurantImage
@@ -20,7 +20,7 @@
               : path + 'default.jpg'
           "
           [alt]="restaurantDetail.restaurant.name"
-          class="object-fill w-full md:h-[150px] h-[80px] rounded-md shadow-lg md:p-2"
+          class="w-full h-full rounded-md"
         />
       </div>
       <div class="col-span-10">
@@ -36,9 +36,14 @@
         </div>
         <div class="font-semibold flex items-center gap-x-1 text-sm md:mt-5">
           <lucide-icon name="bike" class="my-icon w-4 h-4" />
-          Ücretsiz -
+          {{
+            restaurantDetail.restaurant.deliveryFee === 0
+              ? "Ücretsiz"
+              : restaurantDetail.restaurant.deliveryFee
+          }}
+          -
           <lucide-icon name="shoppingCart" class="my-icon w-4 h-4" />
-          Minimum ₺80
+          Minimum ₺{{ restaurantDetail.restaurant.minCartAmount }}
         </div>
         <div class="flex items-center justify-between">
           <div class="flex justify-center items-center">

@@ -3,10 +3,10 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
 
 import { Component, OnInit } from '@angular/core';
 import { LucideAngularModule } from 'lucide-angular';
-import { RestaurantService } from '../../services/restaurant.service';
-import { Restaurant, RestaurantDetail } from '../../models/restaurant';
 import { ToastrService } from 'ngx-toastr';
-import { env } from '../../../environments/environment';
+import { RestaurantDetail } from '../../../models/restaurant';
+import { env } from '../../../../environments/environment';
+import { RestaurantService } from '../../../services/restaurant.service';
 
 @Component({
   selector: 'app-restaurantdetail',

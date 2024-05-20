@@ -1,0 +1,56 @@
+<section
+  *ngIf="restaurantDetail?.categories"
+  class="grid md:grid-cols-12 grid-cols-1 justify-between gap-y-10 gap-x-5"
+>
+  <form
+    (ngSubmit)="save()"
+    [formGroup]="categoryForm"
+    class="md:col-span-4 w-full"
+  >
+    <h1 class="text-2xl font-semibold mb-3 col-span-12">Yeni Kategori</h1>
+    <div class="flex flex-col">
+      <label for="categoryName" class="font-semibold">Kategori adı</label>
+      <input
+        type="text"
+        id="categoryName"
+        formControlName="name"
+        placeholder=""
+        class="p-1 rounded-md border border-orange-500 focus:outline-orange-500"
+      />
+    </div>
+    <!-- <div class="flex flex-col mt-3">
+      <label for="image" class="font-semibold"> Kategori Görseli</label>
+      <input
+        type="file"
+        id="image"
+        class="rounded-md text-sm border cursor-pointer file:cursor-pointer border-orange-500 bg-white file:bg-gray-800 file:text-white text-gray-800 file:border-0 file:p-2 file:font-semibold"
+      />
+    </div> -->
+    <button
+      type="submit"
+      class="rounded-md py-1 bg-orange-400 hover:bg-orange-500 font-semibold px-5 mt-6 w-full"
+    >
+      Ekle
+    </button>
+  </form>
+  <div class="md:col-span-8 mx-auto">
+    <h1 class="text-2xl font-semibold mb-3 text-center">Mevcut Kategoriler</h1>
+    <div class="grid grid-cols-3 gap-5 justify-center items-center">
+      <div
+        *ngFor="let category of restaurantDetail?.categories"
+        class="rounded-md bg-gray-100 p-1 w-fit group cursor-pointer shrink-0"
+      >
+        <div class="inline-flex overflow-hidden">
+          <img
+            src="https://cdn.yemek.com/mnresize/940/940/uploads/2020/04/lahmacun-yeni-one-cikan.jpg"
+            class="rounded-md w-[100px] h-[100px] group-hover:scale-105 transition-all"
+            alt=""
+          />
+        </div>
+        <span class="flex justify-center items-center font-semibold"
+          >{{ category.name }}
+        </span>
+      </div>
+    </div>
+  </div>
+</section>

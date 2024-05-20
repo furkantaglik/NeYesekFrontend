@@ -4,6 +4,7 @@ import { Restaurant } from './restaurant';
 export interface Category {
   id: number;
   name: string;
+  restaurantId: number;
   restaurants?: Restaurant[];
   products?: Product[];
   categoryImage: CategoryImage;

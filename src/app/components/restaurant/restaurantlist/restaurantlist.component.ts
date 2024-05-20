@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { RestaurantcardComponent } from '../restaurantcard/restaurantcard.component';
 import { CommonModule } from '@angular/common';
-import { RestaurantService } from '../../services/restaurant.service';
 import { ToastrService } from 'ngx-toastr';
-import { Restaurant, RestaurantDetail } from '../../models/restaurant';
+import { RestaurantService } from '../../../services/restaurant.service';
+import { RestaurantDetail } from '../../../models/restaurant';
 
 @Component({
   selector: 'app-restaurantlist',

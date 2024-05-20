@@ -10,6 +10,11 @@ export interface Restaurant {
   adress: string;
   telNo: string;
   status: boolean;
+  deliveryTime: number;
+  deliveryFee: number;
+  minCartAmount: number;
+  passwordSalt: string;
+  passwordHash: string;
   comments?: Comment[];
   categories?: Category[];
   products?: Product[];

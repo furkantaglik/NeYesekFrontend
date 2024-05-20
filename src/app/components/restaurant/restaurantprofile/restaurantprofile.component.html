@@ -1,7 +1,8 @@
 <section *ngIf="restaurantDetail">
   <form
+    (ngSubmit)="save()"
     [formGroup]="profileForm"
-    class="grid md:grid-cols-2 gap-x-5 gap-y-3 border-b border-black pb-4"
+    class="grid md:grid-cols-2 gap-x-5 gap-y-3 border-b justify-between items-center border-black pb-4"
   >
     <h1 class="col-span-2 text-2xl font-semibold">Restoran Bilgileri</h1>
     <div class="flex flex-col">
@@ -11,17 +12,17 @@
         id="name"
         formControlName="name"
         [placeholder]="restaurantDetail.restaurant.name"
-        class="p-2 rounded-md border border-orange-500 focus:outline-orange-500"
+        class="p-2 rounded-md border border-orange-500 focus:outline-orange-500 w-fit md:w-full"
       />
     </div>
     <div class="flex flex-col">
       <label for="email" class="font-bold ms-1"> Email </label>
       <input
-        type="text"
+        type="email"
         id="email"
         formControlName="email"
         [placeholder]="restaurantDetail.restaurant.email"
-        class="p-2 rounded-md border border-orange-500 focus:outline-orange-500"
+        class="p-2 rounded-md border border-orange-500 focus:outline-orange-500 w-fit md:w-full"
       />
     </div>
     <div class="flex flex-col">
@@ -31,7 +32,7 @@
         id="telNo"
         formControlName="telNo"
         [placeholder]="restaurantDetail.restaurant.telNo"
-        class="p-2 rounded-md border border-orange-500 focus:outline-orange-500"
+        class="p-2 rounded-md border border-orange-500 focus:outline-orange-500 w-fit md:w-full"
       />
     </div>
     <div class="flex flex-col">
@@ -41,10 +42,46 @@
         id="adress"
         formControlName="adress"
         [placeholder]="restaurantDetail.restaurant.adress"
-        class="p-2 rounded-md border border-orange-500 focus:outline-orange-500"
+        class="p-2 rounded-md border border-orange-500 focus:outline-orange-500 w-fit md:w-full"
       />
     </div>
-    <div class="flex flex-col md:col-span-1 col-span-2">
+    <div class="flex flex-col">
+      <label for="minCartAmount" class="font-bold ms-1">
+        Minimum Tutar (₺)</label
+      >
+      <input
+        type="text"
+        id="minCartAmount"
+        formControlName="minCartAmount"
+        [placeholder]="restaurantDetail.restaurant.minCartAmount"
+        class="p-2 rounded-md border border-orange-500 focus:outline-orange-500 w-fit md:w-full"
+      />
+    </div>
+    <div class="flex flex-col">
+      <label for="deliveryTime" class="font-bold ms-1">
+        Teslimat Süresi (dakika)
+      </label>
+      <input
+        type="text"
+        id="deliveryTime"
+        formControlName="deliveryTime"
+        [placeholder]="restaurantDetail.restaurant.deliveryTime"
+        class="p-2 rounded-md border border-orange-500 focus:outline-orange-500 w-fit md:w-full"
+      />
+    </div>
+    <div class="flex flex-col">
+      <label for="deliveryFee" class="font-bold ms-1">
+        Teslimat Ücreti (₺)</label
+      >
+      <input
+        type="text"
+        id="deliveryFee"
+        formControlName="deliveryFee"
+        [placeholder]="restaurantDetail.restaurant.deliveryFee"
+        class="p-2 rounded-md border border-orange-500 focus:outline-orange-500 w-fit md:w-full"
+      />
+    </div>
+    <div class="flex flex-col md:w-full w-52">
       <label for="image" class="font-bold ms-1"> Resim</label>
       <input
         type="file"
@@ -53,8 +90,9 @@
         class="rounded-md text-sm border cursor-pointer file:cursor-pointer border-orange-500 bg-white file:bg-gray-800 file:text-white text-gray-800 file:border-0 file:p-2 file:font-semibold"
       />
     </div>
+
     <div
-      class="flex flex-col items-center col-span-2 md:col-span-1 justify-center mt-6 group relative"
+      class="flex flex-col items-center col-span-2 justify-center mt-6 group relative"
     >
       <img
         *ngIf="restaurantDetail.restaurantImage"
@@ -80,8 +118,8 @@
     </div>
     <div class="flex flex-col col-span-2">
       <button
-        (click)="save()"
-        class="bg-orange-400 hover:bg-orange-500 md:w-32 p-2 mt-6 rounded-md font-semibold"
+        type="submit"
+        class="bg-orange-400 hover:bg-orange-500 md:w-32 w-full p-2 mt-6 rounded-md font-semibold"
       >
         Kaydet
       </button>

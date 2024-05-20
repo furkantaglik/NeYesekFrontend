@@ -8,6 +8,8 @@ export interface User {
   telNo: string;
   adress: String;
   status: boolean;
+  passwordSalt: string;
+  passwordHash: string;
   comments?: Comment[];
 }
 

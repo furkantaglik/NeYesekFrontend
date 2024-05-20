@@ -1,0 +1,53 @@
+<section
+  [routerLink]="'restaurant/detail/' + restaurantDetail.restaurant.id"
+  class="rounded-md border cursor-pointer group w-full mx-auto"
+>
+  <div class="inline-flex overflow-hidden container">
+    <img
+      [src]="
+        restaurantDetail.restaurantImage
+          ? path + restaurantDetail.restaurantImage.imagePath
+          : path + 'default.jpg'
+      "
+      alt=""
+      class="rounded-md h-[180px] w-full inline-flex group-hover:scale-105 transition-all"
+    />
+  </div>
+  <div class="p-2 w-full">
+    <div class="flex justify-between items-center">
+      <h3 class="text-md font-semibold">
+        {{ restaurantDetail.restaurant.name }}
+      </h3>
+      <span class="text-xs text-gray-600">4.4 (300+)</span>
+    </div>
+    <div class="text-sm text-gray-600">
+      <span>₺{{ restaurantDetail.restaurant.minCartAmount }} Min - </span>
+      <span *ngIf="restaurantDetail.categories">{{
+        restaurantDetail.categories[0].name
+      }}</span>
+    </div>
+    <div class="text-sm font-semibold text-gray-500 flex">
+      <span class="flex justify-center items-center gap-x-1">
+        <lucide-icon name="clock" class="my-icon w-4 h-4"> </lucide-icon>
+        {{ restaurantDetail.restaurant.deliveryTime }} min -
+
+        <span
+          class="flex"
+          [ngClass]="
+            restaurantDetail.restaurant.deliveryFee === 0
+              ? 'text-orange-500 '
+              : ''
+          "
+        >
+          <lucide-icon name="bike" class="my-icon w-4 h-4" />
+          {{
+            restaurantDetail.restaurant.deliveryFee === 0
+              ? "Ücretsiz"
+              : "₺" + restaurantDetail.restaurant.deliveryFee
+          }}
+        </span>
+        - Neyesek
+      </span>
+    </div>
+  </div>
+</section>

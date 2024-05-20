@@ -5,15 +5,15 @@ import { UserloginComponent } from './components/auth/userlogin/userlogin.compon
 import { UserregisterComponent } from './components/auth/userregister/userregister.component';
 import { RestaurantloginComponent } from './components/auth/restaurantlogin/restaurantlogin.component';
 import { RestaurantregisterComponent } from './components/auth/restaurantregister/restaurantregister.component';
-import { RestaurantdetailComponent } from './components/restaurantdetail/restaurantdetail.component';
-import { RestaurantaccountComponent } from './components/restaurantaccount/restaurantaccount.component';
-import { UseraccountComponent } from './components/useraccount/useraccount.component';
-import { NavbarComponent } from './components/navbar/navbar.component';
+import { UseraccountComponent } from './components/user/useraccount/useraccount.component';
 import { FooterComponent } from './components/footer/footer.component';
-import { UserprofileComponent } from './components/userprofile/userprofile.component';
-import { RestaurantprofileComponent } from './components/restaurantprofile/restaurantprofile.component';
+import { UserprofileComponent } from './components/user/userprofile/userprofile.component';
 import { userGuard } from './guards/user.guard';
 import { restaurantGuard } from './guards/restaurant.guard';
+import { RestaurantaccountComponent } from './components/restaurant/restaurantaccount/restaurantaccount.component';
+import { RestaurantprofileComponent } from './components/restaurant/restaurantprofile/restaurantprofile.component';
+import { RestaurantdetailComponent } from './components/restaurant/restaurantdetail/restaurantdetail.component';
+import { RestaurantcategoryComponent } from './components/restaurant/restaurantcategory/restaurantcategory.component';
 
 export const routes: Routes = [
   {
@@ -23,6 +23,7 @@ export const routes: Routes = [
     canActivate: [AuthGuard],
   },
   //Auth
+
   { path: 'user/login', component: UserloginComponent },
   {
     path: 'user/register',
@@ -49,7 +50,7 @@ export const routes: Routes = [
     canActivate: [restaurantGuard],
     children: [
       { path: 'profile', component: RestaurantprofileComponent },
-      { path: 'favorites', component: FooterComponent },
+      { path: 'categories', component: RestaurantcategoryComponent },
     ],
   },
 

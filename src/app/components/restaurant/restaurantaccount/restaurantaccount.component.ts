@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 
 @Component({
@@ -8,4 +8,7 @@ import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
   imports: [CommonModule, RouterLink, RouterLinkActive, RouterOutlet],
   templateUrl: './restaurantaccount.component.html',
 })
-export class RestaurantaccountComponent {}
+export class RestaurantaccountComponent implements OnInit {
+  constructor() {}
+  ngOnInit(): void {}
+}
