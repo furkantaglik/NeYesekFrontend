@@ -18,14 +18,15 @@
         class="p-1 rounded-md border border-orange-500 focus:outline-orange-500"
       />
     </div>
-    <!-- <div class="flex flex-col mt-3">
+    <div class="flex flex-col mt-3">
       <label for="image" class="font-semibold"> Kategori Görseli</label>
       <input
         type="file"
         id="image"
+        (change)="onFileSelected($event)"
         class="rounded-md text-sm border cursor-pointer file:cursor-pointer border-orange-500 bg-white file:bg-gray-800 file:text-white text-gray-800 file:border-0 file:p-2 file:font-semibold"
       />
-    </div> -->
+    </div>
     <button
       type="submit"
       class="rounded-md py-1 bg-orange-400 hover:bg-orange-500 font-semibold px-5 mt-6 w-full"
@@ -35,21 +36,33 @@
   </form>
   <div class="md:col-span-8 mx-auto">
     <h1 class="text-2xl font-semibold mb-3 text-center">Mevcut Kategoriler</h1>
-    <div class="grid grid-cols-3 gap-5 justify-center items-center">
+    <div class="grid grid-cols-4 gap-5 justify-center items-center">
       <div
-        *ngFor="let category of restaurantDetail?.categories"
-        class="rounded-md bg-gray-100 p-1 w-fit group cursor-pointer shrink-0"
+        *ngFor="let categoryDetail of categoryDetails; let i = index"
+        class="rounded-md bg-gray-100 w-fit group cursor-pointer shrink-0 relative"
       >
-        <div class="inline-flex overflow-hidden">
-          <img
-            src="https://cdn.yemek.com/mnresize/940/940/uploads/2020/04/lahmacun-yeni-one-cikan.jpg"
-            class="rounded-md w-[100px] h-[100px] group-hover:scale-105 transition-all"
-            alt=""
+        <label [htmlFor]="categoryDetail.category.id" class="cursor-pointer">
+          <div class="inline-flex overflow-hidden">
+            <img
+              [src]="
+                categoryDetail.categoryImage
+                  ? path + categoryDetail.categoryImage.imagePath
+                  : path + 'default.jpg'
+              "
+              class="rounded-md w-[100px] h-[100px] group-hover:scale-105 transition-all"
+              alt=""
+            />
+          </div>
+          <span class="flex justify-center items-center font-semibold">
+            {{ categoryDetail.category.name }}
+          </span>
+          <input
+            class="accent-orange-600 absolute z-10 top-1 right-1 w-4 h-4 cursor-pointer"
+            type="checkbox"
+            (change)="addCategoryToRestaurant($event, categoryDetail.category)"
+            [id]="categoryDetail.category.id"
           />
-        </div>
-        <span class="flex justify-center items-center font-semibold"
-          >{{ category.name }}
-        </span>
+        </label>
       </div>
     </div>
   </div>

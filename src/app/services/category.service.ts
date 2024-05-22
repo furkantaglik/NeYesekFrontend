@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { ListResponseModel } from '../models/response/listResponseModel';
 import { env } from '../../environments/environment';
 import { SingleResponseModel } from '../models/response/singleResponseModel';
-import { Category, CategoryDetail } from '../models/category';
+import { Category, CategoryDetail, CategoryImage } from '../models/category';
 import { ResponseModel } from '../models/response/responseModel';
 
 @Injectable({
@@ -39,10 +39,10 @@ export class CategoryService {
   }
   getCategoryDetailsByRestaurant(
     restaurantId: number
-  ): Observable<ListResponseModel<Category>> {
-    return this.httpClient.get<ListResponseModel<Category>>(
+  ): Observable<ListResponseModel<CategoryDetail>> {
+    return this.httpClient.get<ListResponseModel<CategoryDetail>>(
       env.apiUrl +
-        'category/getcategorydetailsbyrestaurant?restaurantId=' +
+        'category/getcategorydetailsbyresturant?restaurantId=' +
         restaurantId
     );
   }
@@ -53,8 +53,8 @@ export class CategoryService {
       env.apiUrl + 'category/getcategorydetailsbyproduct?productId=' + productId
     );
   }
-  add(category: Category): Observable<ResponseModel> {
-    return this.httpClient.post<ResponseModel>(
+  add(category: Category): Observable<SingleResponseModel<Category>> {
+    return this.httpClient.post<SingleResponseModel<Category>>(
       env.apiUrl + 'category/add',
       category
     );
@@ -69,6 +69,39 @@ export class CategoryService {
     return this.httpClient.post<ResponseModel>(
       env.apiUrl + 'category/remove',
       category
+    );
+  }
+  //image
+  updateImage(
+    categoryImage: CategoryImage,
+    file: File
+  ): Observable<SingleResponseModel<CategoryImage>> {
+    const formData = new FormData();
+    formData.append('image', file);
+    formData.append('categoryImage', JSON.stringify(categoryImage));
+    return this.httpClient.post<SingleResponseModel<CategoryImage>>(
+      env.apiUrl + `categoryImage/update`,
+      formData
+    );
+  }
+  addImage(
+    categoryImage: CategoryImage,
+    file: File
+  ): Observable<SingleResponseModel<CategoryImage>> {
+    const formData = new FormData();
+    formData.append('image', file);
+    formData.append('categoryImage', JSON.stringify(categoryImage));
+    return this.httpClient.post<SingleResponseModel<CategoryImage>>(
+      env.apiUrl + `categoryImage/add`,
+      formData
+    );
+  }
+  deleteImage(categoryImage: CategoryImage): Observable<ResponseModel> {
+    const formData = new FormData();
+    formData.append('categoryImage', JSON.stringify(categoryImage));
+    return this.httpClient.post<ResponseModel>(
+      env.apiUrl + `categoryImage/remove`,
+      formData
     );
   }
 }

@@ -3,9 +3,10 @@ import { RestaurantService } from '../../services/restaurant.service';
 import { Router, RouterLink } from '@angular/router';
 import { Restaurant } from '../../models/restaurant';
 import { CategoryService } from '../../services/category.service';
-import { Category } from '../../models/category';
+import { Category, CategoryDetail } from '../../models/category';
 import { CommonModule } from '@angular/common';
 import { ToastrService } from 'ngx-toastr';
+import { env } from '../../../environments/environment';
 
 @Component({
   selector: 'app-kitchenlist',
@@ -14,19 +15,20 @@ import { ToastrService } from 'ngx-toastr';
   templateUrl: './kitchenlist.component.html',
 })
 export class KitchenlistComponent implements OnInit {
-  categories: Category[] = [];
+  path: string = env.categoryImagePath;
+  categoryDetails: CategoryDetail[] = [];
   constructor(
     private categoryService: CategoryService,
     private router: Router,
     private toastrService: ToastrService
   ) {}
   ngOnInit(): void {
-    this.getAllRestaurants();
+    this.getAllCategoryDetails();
   }
-  getAllRestaurants() {
-    this.categoryService.getAll().subscribe(
+  getAllCategoryDetails() {
+    this.categoryService.getAllCategoryDetail().subscribe(
       (response) => {
-        this.categories = response.data;
+        this.categoryDetails = response.data;
       },
       (responseError) => {
         this.toastrService.error(responseError.error.message);

@@ -1,19 +1,23 @@
 <h1 class="text-3xl font-semibold mb-3">Mutfaklar</h1>
 <section class="flex gap-x-3 overflow-x-auto">
   <div
-    *ngFor="let category of categories"
-    [routerLink]="'category/' + category.id"
-    class="rounded-md bg-gray-100 p-1 w-fit group cursor-pointer shrink-0"
+    *ngFor="let categoryDetail of categoryDetails"
+    [routerLink]="'category/' + categoryDetail.category"
+    class="rounded-md bg-gray-100 w-fit group cursor-pointer shrink-0"
   >
     <div class="inline-flex overflow-hidden">
       <img
-        src="https://cdn.yemek.com/mnresize/940/940/uploads/2020/04/lahmacun-yeni-one-cikan.jpg"
+        [src]="
+          categoryDetail.categoryImage
+            ? path + categoryDetail.categoryImage.imagePath
+            : path + 'default.jpg'
+        "
         class="rounded-md w-[100px] h-[100px] group-hover:scale-105 transition-all"
         alt=""
       />
     </div>
     <span class="flex justify-center items-center font-semibold"
-      >{{ category.name }}
+      >{{ categoryDetail.category.name }}
     </span>
   </div>
 </section>

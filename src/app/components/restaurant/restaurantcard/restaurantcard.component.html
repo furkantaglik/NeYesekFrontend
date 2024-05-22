@@ -22,7 +22,7 @@
     </div>
     <div class="text-sm text-gray-600">
       <span>₺{{ restaurantDetail.restaurant.minCartAmount }} Min - </span>
-      <span *ngIf="restaurantDetail.categories">{{
+      <span *ngIf="restaurantDetail.categories[0]">{{
         restaurantDetail.categories[0].name
       }}</span>
     </div>
