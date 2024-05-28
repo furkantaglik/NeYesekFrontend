@@ -1,0 +1,53 @@
+<section>
+  <form
+    class="grid grid-cols-2 gap-x-5 gap-y-3 justify-between items-center mb-5"
+  >
+    <h1 class="text-2xl font-semibold col-span-2">Yeni ürün</h1>
+    <div class="flex flex-col">
+      <label for="name" class="font-bold ms-1"> Ürün adı </label>
+      <input
+        type="text"
+        id="name"
+        formControlName="name"
+        class="p-2 rounded-md border border-orange-500 focus:outline-orange-500 w-fit md:w-full"
+      />
+    </div>
+    <div class="flex flex-col">
+      <label for="unitPrice" class="font-bold ms-1"> Ürün fiyatı </label>
+      <input
+        type="number"
+        id="unitPrice"
+        formControlName="unitPrice"
+        class="p-2 rounded-md border border-orange-500 focus:outline-orange-500 w-fit md:w-full"
+      />
+    </div>
+    <div class="flex flex-col">
+      <label for="unitsInStock" class="font-bold ms-1"> Stok adedi </label>
+      <input
+        type="number"
+        id="unitsInStock"
+        formControlName="unitsInStock"
+        class="p-2 rounded-md border border-orange-500 focus:outline-orange-500 w-fit md:w-full"
+      />
+    </div>
+    <div class="flex flex-col md:w-full w-52">
+      <label for="image" class="font-bold ms-1"> Ürün görseli</label>
+      <input
+        type="file"
+        id="image"
+        class="rounded-md text-sm border cursor-pointer file:cursor-pointer border-orange-500 bg-white file:bg-gray-800 file:text-white text-gray-800 file:border-0 file:p-2 file:font-semibold"
+      />
+    </div>
+  </form>
+  <div
+    class="grid grid-cols-2 gap-x-5 gap-y-3 justify-between items-center mb-5"
+  >
+    <h1 class="text-2xl font-semibold col-span-2">Mevcut ürünler</h1>
+    <app-productcard [productDetail]="" />
+    <app-productcard [productDetail]="" />
+    <app-productcard [productDetail]="" />
+    <app-productcard [productDetail]="" />
+    <app-productcard [productDetail]="" />
+    <app-productcard [productDetail]="" />
+  </div>
+</section>

@@ -35,6 +35,11 @@
     </button>
   </form>
   <div class="md:col-span-8 mx-auto">
+    <!-- <button
+      class="float-end py-1 px-3 bg-orange-400 hover:bg-orange-500 rounded-md font-semibold"
+    >
+      Kaydet
+    </button> -->
     <h1 class="text-2xl font-semibold mb-3 text-center">Mevcut Kategoriler</h1>
     <div class="grid grid-cols-4 gap-5 justify-center items-center">
       <div
@@ -61,8 +66,18 @@
             type="checkbox"
             (change)="addCategoryToRestaurant($event, categoryDetail.category)"
             [id]="categoryDetail.category.id"
+            [checked]="isCategorySelected(categoryDetail.category)"
           />
         </label>
+        <div
+          (click)="deleteCategory(categoryDetail)"
+          class="absolute top-0 hidden group-hover:block p-1"
+        >
+          <lucide-icon
+            name="trash2"
+            class="text-red-600 bg-gray-700 w-5 h-5"
+          ></lucide-icon>
+        </div>
       </div>
     </div>
   </div>

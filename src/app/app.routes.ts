@@ -14,6 +14,8 @@ import { RestaurantaccountComponent } from './components/restaurant/restaurantac
 import { RestaurantprofileComponent } from './components/restaurant/restaurantprofile/restaurantprofile.component';
 import { RestaurantdetailComponent } from './components/restaurant/restaurantdetail/restaurantdetail.component';
 import { RestaurantcategoryComponent } from './components/restaurant/restaurantcategory/restaurantcategory.component';
+import { RestaurantmenuComponent } from './components/restaurant/restaurantmenu/restaurantmenu.component';
+import { RestaurantproductComponent } from './components/restaurant/restaurantproduct/restaurantproduct.component';
 
 export const routes: Routes = [
   {
@@ -51,6 +53,8 @@ export const routes: Routes = [
     children: [
       { path: 'profile', component: RestaurantprofileComponent },
       { path: 'categories', component: RestaurantcategoryComponent },
+      { path: 'menus', component: RestaurantmenuComponent },
+      { path: 'products', component: RestaurantproductComponent },
     ],
   },
 
