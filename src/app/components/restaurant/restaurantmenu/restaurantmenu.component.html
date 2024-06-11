@@ -1,1 +1,145 @@
-<p>restaurantmenu works!</p>
+<section *ngIf="restaurantDetail?.products">
+  <form
+    [formGroup]="menuForm"
+    (submit)="save()"
+    class="grid grid-cols-2 gap-x-5 gap-y-3 justify-between items-center mb-5"
+  >
+    <h1 class="text-2xl font-semibold col-span-2">Yeni Menü</h1>
+    <div class="flex flex-col">
+      <label for="name" class="font-bold ms-1"> Menü adı </label>
+      <input
+        type="text"
+        id="name"
+        formControlName="name"
+        class="p-2 rounded-md border border-orange-500 focus:outline-orange-500 w-fit md:w-full"
+      />
+    </div>
+    <div class="flex flex-col">
+      <label for="totalPrice" class="font-bold ms-1"> Menü fiyatı </label>
+      <input
+        type="number"
+        id="totalPrice"
+        formControlName="totalPrice"
+        class="p-2 rounded-md border border-orange-500 focus:outline-orange-500 w-fit md:w-full"
+      />
+    </div>
+    <div class="flex flex-col">
+      <label for="description" class="font-bold ms-1"> Açıklama </label>
+      <input
+        type="text"
+        id="description"
+        formControlName="description"
+        class="p-2 rounded-md border border-orange-500 focus:outline-orange-500 w-fit md:w-full"
+      />
+    </div>
+    <div class="flex flex-col md:w-full w-52">
+      <label for="image" class="font-bold ms-1"> Menü görseli</label>
+      <input
+        type="file"
+        id="image"
+        (change)="onFileSelected($event)"
+        class="rounded-md text-sm border cursor-pointer file:cursor-pointer border-orange-500 bg-white file:bg-gray-800 file:text-white text-gray-800 file:border-0 file:p-2 file:font-semibold"
+      />
+    </div>
+    <div class="flex flex-col">
+      <label for="description" class="font-bold ms-1"> Ürün Seç </label>
+      <div
+        (click)="openProductModal()"
+        class="rounded-md py-1 bg-gray-400 hover:bg-gray-500 text-white font-semibold px-5 w-full"
+      >
+        Ürün seç
+      </div>
+    </div>
+    <button
+      type="submit"
+      class="rounded-md py-1 bg-orange-400 hover:bg-orange-500 font-semibold px-5 mt-6 w-full"
+    >
+      Ekle
+    </button>
+  </form>
+  <section
+    *ngIf="productModal"
+    class="fixed inset-0 flex justify-center md:items-center items-end z-20"
+    (click)="openProductModal()"
+  >
+    <div
+      class="bg-white p-4 rounded shadow-lg z-10"
+      (click)="$event.stopPropagation()"
+    >
+      <h1 class="text-2xl font-semibold col-span-2">Mevcut ürünler</h1>
+      <label
+        *ngFor="let productDetail of productDetails"
+        [id]="productDetail.product.id"
+        class="grid grid-cols-3 gap-x-2 justify-between border group relative border-gray-400 cursor-pointer transition-all bg-white rounded-md p-2"
+      >
+        <div class="col-span-2">
+          <h3 class="text-lg font-semibold">
+            {{ productDetail.product.name }}
+          </h3>
+          <h5 class="text-md font-semibold">
+            ₺ {{ productDetail.product.unitPrice }}
+          </h5>
+          <p class="text-sm">
+            {{ productDetail.product.description }}
+          </p>
+        </div>
+        <div class="w-full h-full col-span-1">
+          <img
+            [src]="
+              productDetail.productImage
+                ? productPath + productDetail.productImage.imagePath
+                : productPath + 'default.jpg'
+            "
+            alt=""
+            class="rounded-md object-cover h-[100px] w-full"
+          />
+        </div>
+        <input
+          class="accent-orange-600 absolute z-10 top-1 right-1 w-4 h-4 cursor-pointer"
+          type="checkbox"
+          [id]="productDetail.product.id"
+          (change)="addProductToMenu(productDetail.product)"
+        />
+      </label>
+    </div>
+    <div class="absolute inset-0 bg-black bg-opacity-30"></div>
+  </section>
+  <div
+    class="grid md:grid-cols-2 gap-x-5 gap-y-3 justify-between items-center mb-5"
+  >
+    <h1 class="text-2xl font-semibold col-span-2">Mevcut Menüler</h1>
+    <section
+      *ngFor="let menuDetail of menuDetails"
+      class="grid grid-cols-3 gap-x-2 justify-between border hover:scale-105 group relative border-gray-400 hover:bg-orange-100 cursor-pointer transition-all bg-white rounded-md p-2"
+    >
+      <div class="col-span-2">
+        <h3 class="text-lg font-semibold">{{ menuDetail.menu.name }}</h3>
+        <h5 class="text-md font-semibold">
+          ₺ {{ menuDetail.menu.totalPrice }}
+        </h5>
+        <p class="text-sm">
+          {{ menuDetail.menu.description }}
+        </p>
+      </div>
+      <div class="w-full h-full col-span-1">
+        <img
+          [src]="
+            menuDetail.menuImage
+              ? menuPath + menuDetail.menuImage.imagePath
+              : menuPath + 'default.jpg'
+          "
+          alt=""
+          class="rounded-md object-cover h-[100px] w-full"
+        />
+      </div>
+      <div class="md:hidden group-hover:block absolute bottom-2 right-3">
+        <button
+          (click)="deleteMenu(menuDetail)"
+          class="bg-gray-300 p-1 rounded-md"
+        >
+          <lucide-icon class="w-5 h-5 text-red-500" name="trash2" />
+        </button>
+      </div>
+    </section>
+  </div>
+</section>

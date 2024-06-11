@@ -1,4 +1,5 @@
 import { Category } from './category';
+import { Favorite } from './favorite';
 import { Menu } from './menu';
 import { OperationClaim } from './operationClaim';
 import { Product } from './product';
@@ -28,6 +29,7 @@ export interface RestaurantDetail {
   menus: Menu[];
   products: Product[];
   categories: Category[];
+  favorites: Favorite[];
   restaurantImage: RestaurantImage | null;
 }
 

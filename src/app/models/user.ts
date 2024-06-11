@@ -1,3 +1,4 @@
+import { Favorite } from './favorite';
 import { OperationClaim } from './operationClaim';
 
 export interface User {
@@ -16,6 +17,7 @@ export interface User {
 export interface UserDetail {
   user: User;
   comments: Comment;
+  favorites: Favorite[];
 }
 
 export interface UserOperationClaim {

@@ -8,6 +8,7 @@ export interface Product {
   name: string;
   unitPrice: number;
   unitsInStock: number;
+  description: string;
   categories?: Category[];
   comments?: Comment[];
   restaurant: Restaurant;

@@ -6,6 +6,7 @@ import { SingleResponseModel } from '../models/response/singleResponseModel';
 import { env } from '../../environments/environment';
 import { User, UserDetail } from '../models/user';
 import { ResponseModel } from '../models/response/responseModel';
+import { FavoriteDetail } from '../models/favorite';
 
 @Injectable({
   providedIn: 'root',

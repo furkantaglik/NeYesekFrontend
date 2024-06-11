@@ -106,7 +106,7 @@ export class RestaurantcategoryComponent implements OnInit {
   deleteCategory(categoryDetail: CategoryDetail) {
     if (categoryDetail.categoryImage) {
       this.deleteImage(categoryDetail.categoryImage);
-      categoryDetail.category.categoryImage = null;
+      categoryDetail.categoryImage = null;
     }
     this.categoryservice
       .remove(categoryDetail.category)

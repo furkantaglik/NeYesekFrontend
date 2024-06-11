@@ -59,5 +59,9 @@ export const routes: Routes = [
   },
 
   //Other
-  { path: 'restaurant/detail/:id', component: RestaurantdetailComponent },
+  {
+    path: 'restaurant/detail/:id',
+    component: RestaurantdetailComponent,
+    // children: [{ path: 'menu', component: FooterComponent }],
+  },
 ];

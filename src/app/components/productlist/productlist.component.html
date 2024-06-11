@@ -1,0 +1,9 @@
+<h1 class="text-3xl font-semibold mb-3">Yemekler</h1>
+<section
+  class="grid grid-cols-2 xs:grid-cols-2 sm:grid-cols-2 md:grid-cols-3 gap-5"
+>
+  <app-productcard
+    *ngFor="let productDetail of productsDetails"
+    [productDetail]="productDetail"
+  />
+</section>
