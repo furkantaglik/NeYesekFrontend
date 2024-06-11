@@ -1,2 +1,2 @@
 ## NeYesekFrontend
-![Örnek Resim](images/home.png)
+![Örnek Resim](src/assets/images/home.png)
