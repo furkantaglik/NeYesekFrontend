@@ -28,6 +28,9 @@ import {
   Star,
   SquareUserRound,
   Trash2,
+  CirclePlus,
+  Minus,
+  Plus,
 } from 'lucide-angular';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
 import { IMAGE_CONFIG } from '@angular/common';
@@ -67,6 +70,9 @@ export const appConfig: ApplicationConfig = {
         Star,
         SquareUserRound,
         Trash2,
+        CirclePlus,
+        Minus,
+        Plus,
       })
     ),
   ],

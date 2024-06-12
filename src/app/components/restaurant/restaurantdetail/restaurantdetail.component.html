@@ -64,13 +64,16 @@
           <button
             *ngIf="isUser()"
             (click)="addFavorite()"
-            class="text-sm flex justify-center items-center gap-x-1 md:p-1  text-orange-600 transition-all md:border-orange-400 md:border rounded-md md:hover:bg-orange-200 md:hover:border-orange-500"
+            class="text-sm flex justify-center items-center gap-x-1 md:p-1 text-orange-600 transition-all md:border-orange-400 md:border rounded-md md:hover:bg-orange-200 md:hover:border-orange-500"
           >
             <lucide-icon
               name="heart"
               [ngClass]="isFavorite() ? 'text-lime-500 ' : 'fill-none'"
             />
-            <span class="md:block hidden">@if (isFavorite()) {Kaldır} @else if (!isFavorite()) {Favorile}</span>
+            <span class="md:block hidden"
+              >@if (isFavorite()) {Kaldır} @else if (!isFavorite())
+              {Favorile}</span
+            >
           </button>
         </div>
       </div>
@@ -108,13 +111,13 @@
   <!-- ürünler -->
   <nav class="border-b flex gap-x-5">
     <a
-    (click)="scrollToElement('menus')"
-      class="hover:bg-orange-100 p-2 rounded-md cursor-pointer border-b-2   hover:border-orange-500"
+      (click)="scrollToElement('menus')"
+      class="hover:bg-orange-100 p-2 rounded-md cursor-pointer border-b-2 hover:border-orange-500"
     >
       <h1 class="font-semibold">Menüler</h1>
     </a>
     <a
-    (click)="scrollToElement('products')"
+      (click)="scrollToElement('products')"
       class="hover:bg-orange-100 p-2 rounded-md cursor-pointer border-b-2 hover:border-orange-500"
     >
       <h1 class="font-semibold">ürünler</h1>
@@ -135,11 +138,15 @@
       <h1 class="font-semibold">Tatlılar</h1>
     </div>
   </nav>
-  <section id="menus"  class="grid grid-cols-1 md:grid-cols-2 gap-5">
-    <h1 class="text-2xl font-semibold  md:col-span-2 col-span-1">Menüler</h1>
-      <div
+  <section
+    *ngIf="menuDetails"
+    id="menus"
+    class="grid grid-cols-1 md:grid-cols-2 gap-5"
+  >
+    <h1 class="text-2xl font-semibold md:col-span-2 col-span-1">Menüler</h1>
+    <div
       *ngFor="let menuDetail of menuDetails"
-      class="grid grid-cols-3 gap-x-2 justify-between border  group relative border-gray-400 hover:bg-orange-100 cursor-pointer transition-all bg-white rounded-md p-2"
+      class="grid grid-cols-3 gap-x-2 justify-between border group relative border-gray-400 hover:bg-orange-100 cursor-pointer transition-all bg-white rounded-md p-2"
     >
       <div class="col-span-2">
         <h3 class="text-lg font-semibold">{{ menuDetail.menu.name }}</h3>
@@ -161,13 +168,28 @@
           class="rounded-md object-cover h-[100px] w-full"
         />
       </div>
+      <div class="md:hidden block group-hover:block absolute bottom-2 right-3">
+        <button
+          (click)="addToBasket(menuDetail)"
+          class="bg-gray-700 p-1 rounded-full"
+        >
+          <lucide-icon
+            class="fill-black text-orange-600 font-semibold"
+            name="circlePlus"
+          />
+        </button>
+      </div>
     </div>
   </section>
-  <section id="products" class="grid grid-cols-1 md:grid-cols-2 gap-5">
-    <h1 class="text-2xl font-semibold  md:col-span-2 col-span-1">Yemekler</h1>
-      <div
+  <section
+    *ngIf="productDetails"
+    id="products"
+    class="grid grid-cols-1 md:grid-cols-2 gap-5"
+  >
+    <h1 class="text-2xl font-semibold md:col-span-2 col-span-1">Yemekler</h1>
+    <div
       *ngFor="let productDetail of productDetails"
-      class="grid grid-cols-3 gap-x-2 justify-between border  group relative border-gray-400 hover:bg-orange-100 cursor-pointer transition-all bg-white rounded-md p-2"
+      class="grid grid-cols-3 gap-x-2 justify-between border group relative border-gray-400 hover:bg-orange-100 cursor-pointer transition-all bg-white rounded-md p-2"
     >
       <div class="col-span-2">
         <h3 class="text-lg font-semibold">{{ productDetail.product.name }}</h3>
@@ -188,6 +210,17 @@
           alt=""
           class="rounded-md object-cover h-[100px] w-full"
         />
+      </div>
+      <div class="md:hidden block group-hover:block absolute bottom-2 right-3">
+        <button
+          (click)="addToBasket(productDetail)"
+          class="bg-gray-700 p-1 rounded-full"
+        >
+          <lucide-icon
+            class="fill-black text-orange-600 font-semibold"
+            name="circlePlus"
+          />
+        </button>
       </div>
     </div>
   </section>

@@ -18,15 +18,10 @@
       (click)="setLoginDropdown()"
       class="rounded-full p-1 hover:bg-orange-100 cursor-pointer group flex justify-center items-center"
     >
-      <!-- <span *ngIf="isUser()" class="font-semibold">{{ user.firstName }}</span>
-
-      <span *ngIf="isRestaurant()" class="font-semibold">{{
-        restaurant.name
-      }}</span> -->
-
       <lucide-icon name="user" class="my-icon group-hover:fill-orange-600" />
     </div>
 
+    <!-- login  -->
     <div
       *ngIf="loginDropdown === true"
       class="z-10 absolute w-fit top-12 right-0 border border-orange-600 bg-white rounded-md p-2 text-black font-bold text-sm"
@@ -71,6 +66,22 @@
       </div>
     </div>
 
+    <!-- sepet  -->
+
+    <div
+      *ngIf="basketModal"
+      class="fixed inset-0 flex justify-center md:items-center items-end z-20"
+      (click)="setBasketModal()"
+    >
+      <section
+        class="bg-white p-4 rounded shadow-lg z-10 w-fit h-fit"
+        (click)="$event.stopPropagation()"
+      >
+        <app-basket [basketInThings]="basket" />
+      </section>
+      <div class="absolute inset-0 bg-black bg-opacity-30"></div>
+    </div>
+
     <a
       *ngIf="isAuthenticated()"
       routerLink="/favorites"
@@ -80,6 +91,7 @@
     </a>
     <div
       *ngIf="isAuthenticated()"
+      (click)="setBasketModal()"
       class="rounded-full p-1 hover:bg-orange-100 cursor-pointer group"
     >
       <lucide-icon

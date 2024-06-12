@@ -8,17 +8,29 @@ import { Restaurant } from '../../models/restaurant';
 import { UserService } from '../../services/user.service';
 import { RestaurantService } from '../../services/restaurant.service';
 import { ToastrService } from 'ngx-toastr';
+import { Product } from '../../models/product';
+import { Menu } from '../../models/menu';
+import { AboutComponent } from '../restaurant/about/about.component';
+import { BasketComponent } from '../basket/basket.component';
 
 @Component({
   selector: 'app-navbar',
   standalone: true,
-  imports: [CommonModule, LucideAngularModule, RouterLink],
+  imports: [
+    CommonModule,
+    LucideAngularModule,
+    RouterLink,
+    AboutComponent,
+    BasketComponent,
+  ],
   templateUrl: './navbar.component.html',
 })
 export class NavbarComponent {
   loginDropdown: boolean = false;
+  basketModal: boolean = false;
   user!: User;
   restaurant!: Restaurant;
+  basket: any;
   constructor(
     private authService: AuthService,
     private router: Router,
@@ -30,10 +42,14 @@ export class NavbarComponent {
   ngOnInit(): void {
     this.isUser() && this.getUser();
     this.isRestaurant() && this.getRestaurant();
+    this.getBasket();
   }
 
   setLoginDropdown(): void {
     this.loginDropdown = !this.loginDropdown;
+  }
+  setBasketModal() {
+    this.basketModal = !this.basketModal;
   }
 
   isAuthenticated() {
@@ -59,6 +75,10 @@ export class NavbarComponent {
       .subscribe((response) => {
         this.restaurant = response.data;
       });
+  }
+  getBasket() {
+    this.basket = JSON.parse(localStorage.getItem('basket')) || [];
+    console.log(this.basket);
   }
 
   logOut() {

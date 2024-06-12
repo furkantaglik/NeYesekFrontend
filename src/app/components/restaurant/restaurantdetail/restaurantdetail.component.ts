@@ -1,4 +1,4 @@
-import { CommonModule, ViewportScroller } from '@angular/common';
+import { CommonModule, NgIf, ViewportScroller } from '@angular/common';
 import { ActivatedRoute, Params, Router, RouterLink } from '@angular/router';
 
 import { Component, OnInit } from '@angular/core';
@@ -34,11 +34,11 @@ import { ProductDetail } from '../../../models/product';
 export class RestaurantdetailComponent implements OnInit {
   restaurantDetail!: RestaurantDetail;
   restaurantPath: string = env.restaurantImagepath;
-  menuPath:string=env.menuImagePath;
-  productPath:string=env.productImagePath;
-  favorites:FavoriteDetail[];
-  menuDetails:MenuDetail[];
-  productDetails:ProductDetail[];
+  menuPath: string = env.menuImagePath;
+  productPath: string = env.productImagePath;
+  favorites: FavoriteDetail[];
+  menuDetails: MenuDetail[];
+  productDetails: ProductDetail[];
   commentModal: boolean = false;
   aboutModal: boolean = false;
   favoriteModel: any;
@@ -46,13 +46,13 @@ export class RestaurantdetailComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private restaurantservice: RestaurantService,
-    private menuService:MenuService,
-    private productService:ProductService,
+    private menuService: MenuService,
+    private productService: ProductService,
     private userService: UserService,
     private toastrService: ToastrService,
     private favoriteService: FavoriteService,
     private authService: AuthService,
-    private viewportScroller:ViewportScroller
+    private viewportScroller: ViewportScroller
   ) {}
 
   ngOnInit(): void {
@@ -61,7 +61,6 @@ export class RestaurantdetailComponent implements OnInit {
     this.getUser();
     this.getMenuDetailsByRestaurant();
     this.getProductDetailsByRestaurant();
-
   }
   getRestaurantDetail(id: string) {
     this.restaurantservice.getRestaurantDetail(parseInt(id)).subscribe(
@@ -73,26 +72,36 @@ export class RestaurantdetailComponent implements OnInit {
       }
     );
   }
-  getMenuDetailsByRestaurant(){
-    this.menuService.getMenuDetailsByRestaurant(parseInt(this.route.snapshot.paramMap.get('id'))).subscribe(response=>{
-      this.menuDetails=response.data;
-    })
+  getMenuDetailsByRestaurant() {
+    this.menuService
+      .getMenuDetailsByRestaurant(
+        parseInt(this.route.snapshot.paramMap.get('id'))
+      )
+      .subscribe((response) => {
+        this.menuDetails = response.data;
+      });
   }
-  getProductDetailsByRestaurant(){
-    this.productService.getProductDetailsByRestaurant(parseInt(this.route.snapshot.paramMap.get('id'))).subscribe(response=>{
-      this.productDetails=response.data;
-    })
+  getProductDetailsByRestaurant() {
+    this.productService
+      .getProductDetailsByRestaurant(
+        parseInt(this.route.snapshot.paramMap.get('id'))
+      )
+      .subscribe((response) => {
+        this.productDetails = response.data;
+      });
   }
   getUser() {
-    if(this.isUser()){
+    if (this.isUser()) {
       this.userService
-      .getUserDetail(parseInt(localStorage.getItem('userId')))
-      .subscribe((response) => {
-        this.userDetail = response.data;
-      });
-      this.favoriteService.getFavoriteDetailsByUserId(parseInt(localStorage.getItem('userId'))).subscribe(response=>{
-        this.favorites=response.data
-      })
+        .getUserDetail(parseInt(localStorage.getItem('userId')))
+        .subscribe((response) => {
+          this.userDetail = response.data;
+        });
+      this.favoriteService
+        .getFavoriteDetailsByUserId(parseInt(localStorage.getItem('userId')))
+        .subscribe((response) => {
+          this.favorites = response.data;
+        });
     }
   }
   isUser(): boolean {
@@ -104,7 +113,7 @@ export class RestaurantdetailComponent implements OnInit {
   openAboutModal() {
     this.aboutModal = !this.aboutModal;
   }
-  scrollToElement(elementId:string):void{
+  scrollToElement(elementId: string): void {
     this.viewportScroller.scrollToAnchor(elementId);
   }
 
@@ -121,10 +130,42 @@ export class RestaurantdetailComponent implements OnInit {
         this.toastrService.error(responseError.error.message);
       }
     );
-    
-    
   }
   isFavorite() {
-   return this.favorites?.find(f=>f.restaurant.id===this.restaurantDetail?.restaurant.id && f.user.id === parseInt(localStorage.getItem('userId')))
+    return this.favorites?.find(
+      (f) =>
+        f.restaurant.id === this.restaurantDetail?.restaurant.id &&
+        f.user.id === parseInt(localStorage.getItem('userId'))
+    );
+  }
+
+  addToBasket(item: any) {
+    let basket = JSON.parse(localStorage.getItem('basket')) || [];
+
+    // Öğe tipini belirleme
+    let itemType = item.product ? 'product' : 'menu';
+
+    // Sepette aynı türden bir öğe var mı kontrol etme
+    let existingItemIndex = basket.findIndex(
+      (basketItem) =>
+        basketItem.id === item.id &&
+        basketItem.type === itemType &&
+        JSON.stringify(basketItem[itemType]) === JSON.stringify(item[itemType])
+    );
+
+    if (existingItemIndex !== -1) {
+      // Sepette aynı türden bir öğe zaten var, miktarını artır
+      basket[existingItemIndex].quantity += 1;
+    } else {
+      // Sepette aynı türden bir öğe yok, yeni öğe ekle
+      let newItem = {
+        ...item,
+        quantity: 1,
+        type: itemType,
+      };
+      basket.push(newItem);
+    }
+
+    localStorage.setItem('basket', JSON.stringify(basket));
   }
 }
