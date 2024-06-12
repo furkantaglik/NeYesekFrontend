@@ -10,14 +10,26 @@ import { LucideAngularModule } from 'lucide-angular';
   templateUrl: './basket.component.html',
 })
 export class BasketComponent implements OnInit {
+  @Input() basketInThings: any;
   productPath: string = env.productImagePath;
   menuPath: string = env.menuImagePath;
-  @Input() basketInThings: any;
+  totalAmount: number;
 
   constructor() {}
-
   ngOnInit(): void {
     this.loadBasket();
+    this.calculateTotalAmount();
+  }
+
+  calculateTotalAmount() {
+    this.totalAmount = 0;
+    for (let basketItem of this.basketInThings) {
+      if (basketItem.menu) {
+        this.totalAmount += basketItem.menu.totalPrice * basketItem.quantity;
+      } else if (basketItem.product) {
+        this.totalAmount += basketItem.product.unitPrice * basketItem.quantity;
+      }
+    }
   }
 
   loadBasket() {
@@ -27,6 +39,7 @@ export class BasketComponent implements OnInit {
   saveBasket() {
     localStorage.setItem('basket', JSON.stringify(this.basketInThings));
   }
+
   removeFromBasket(item: any) {
     this.basketInThings = this.basketInThings.filter((basketItem) => {
       return (
@@ -40,6 +53,7 @@ export class BasketComponent implements OnInit {
   incrementQuantity(basket: any) {
     basket.quantity += 1;
     this.saveBasket();
+    this.calculateTotalAmount();
   }
 
   decrementQuantity(basket: any) {
@@ -49,5 +63,6 @@ export class BasketComponent implements OnInit {
       this.removeFromBasket(basket);
     }
     this.saveBasket();
+    this.calculateTotalAmount();
   }
 }

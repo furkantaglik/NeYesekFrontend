@@ -35,26 +35,38 @@
           class="rounded-md object-cover h-[50px] w-full"
         />
       </div>
-      <div class="flex items-center gap-x-3">
-        <button
-          (click)="decrementQuantity(basket)"
-          class="p-1 hover:bg-orange-100 rounded-full transition-all"
-        >
-          <lucide-icon
-            name="minus"
-            class="text-orange-500 text-sm"
-          ></lucide-icon>
-        </button>
-        <span class="font-semibold">{{ basket.quantity }}</span>
-        <button
-          (click)="incrementQuantity(basket)"
-          class="p-1 hover:bg-orange-100 rounded-full"
-        >
-          <lucide-icon
-            name="plus"
-            class="text-orange-500 text-sm"
-          ></lucide-icon>
-        </button>
+      <div class="flex items-center justify-between">
+        <div class="flex items-center gap-x-3">
+          <button
+            (click)="decrementQuantity(basket)"
+            class="p-1 hover:bg-orange-100 rounded-full transition-all"
+          >
+            <lucide-icon
+              name="minus"
+              class="text-orange-500 text-sm"
+            ></lucide-icon>
+          </button>
+          <span class="font-semibold">{{ basket.quantity }}</span>
+          <button
+            (click)="incrementQuantity(basket)"
+            class="p-1 hover:bg-orange-100 rounded-full"
+          >
+            <lucide-icon
+              name="plus"
+              class="text-orange-500 text-sm"
+            ></lucide-icon>
+          </button>
+        </div>
+        <div>
+          <h3>
+            ₺
+            {{
+              (basket.product ? basket.product.unitPrice : 0) *
+                basket.quantity +
+                (basket.menu ? basket.menu.totalPrice : 0) * basket.quantity
+            }}
+          </h3>
+        </div>
       </div>
     </div>
   </div>
@@ -67,12 +79,13 @@
       <p class="text-sm">Hemen Mükemmel Lezzetleri Keşfedin</p>
     </div>
   </ng-template>
-  <div class="mt-3 px-5">
+  <div class="mt-3 px-5 text-white">
     <button
       *ngIf="basketInThings.length > 0"
       class="p-1 w-full bg-orange-400 hover:bg-orange-500 font-semibold text-lg rounded-t-xl"
     >
-      Sepeti Onayla
+      Sepeti Onayla |
+      <span class="text-yellow-200"> ₺{{ totalAmount }} </span>
     </button>
     <button
       *ngIf="basketInThings.length === 0"

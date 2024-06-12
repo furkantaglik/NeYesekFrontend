@@ -141,11 +141,8 @@ export class RestaurantdetailComponent implements OnInit {
 
   addToBasket(item: any) {
     let basket = JSON.parse(localStorage.getItem('basket')) || [];
-
-    // Öğe tipini belirleme
     let itemType = item.product ? 'product' : 'menu';
 
-    // Sepette aynı türden bir öğe var mı kontrol etme
     let existingItemIndex = basket.findIndex(
       (basketItem) =>
         basketItem.id === item.id &&
@@ -154,10 +151,8 @@ export class RestaurantdetailComponent implements OnInit {
     );
 
     if (existingItemIndex !== -1) {
-      // Sepette aynı türden bir öğe zaten var, miktarını artır
       basket[existingItemIndex].quantity += 1;
     } else {
-      // Sepette aynı türden bir öğe yok, yeni öğe ekle
       let newItem = {
         ...item,
         quantity: 1,
@@ -166,6 +161,7 @@ export class RestaurantdetailComponent implements OnInit {
       basket.push(newItem);
     }
 
+    this.toastrService.info('Sepete Eklendi');
     localStorage.setItem('basket', JSON.stringify(basket));
   }
 }
